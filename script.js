@@ -1,4 +1,5 @@
 const notes = ['Dó', 'Ré', 'Mi', 'Fá', 'Sol', 'Lá', 'Si', 'C', 'D', 'E', 'F', 'G', 'A', 'B'];
+const intervalo = document.getElementById('intervalo')
 const MAX_PREVIOUS_NOTES = 6;
 const generatedNotes = [];
 
@@ -14,7 +15,7 @@ function toggleInterval() {
     isIntervalRunning = false;
     button.innerText = 'Start'
   } else {
-    myInterval = setInterval(generateNotes, 500);
+    myInterval = setInterval(generateNotes, intervalo.value*1000);
     isIntervalRunning = true;
     button.innerText = 'Stop'
   }

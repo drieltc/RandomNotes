@@ -11,8 +11,17 @@ body{
 }
 
 #notes{
-  height: 120px;
+  height: 110px;
   width: 25px;
   color:rgb(206, 209, 212);
-  font-family:Arial, Helvetica, sans-serif
+  font-family:Arial, Helvetica, sans-serif;
+  margin: 10px;
+}
+
+#intervalo{
+  margin: 10px;
+}
+
+#start-stop-button{
+  margin:10px
 }
