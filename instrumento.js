@@ -1,89 +1,131 @@
-class instrumento {
-    do(){}
-    re(){}
-    mi(){}
-    fa(){}
-    sol(){}
-    la(){}
+class Instrumento {
+  do() {}
+  re() {}
+  mi() {}
+  fa() {}
+  sol() {}
+  la() {}
 }
 
-class instrumentoCordas extends instrumento {
+class InstrumentoCordas extends Instrumento {
+  constructor(tuning, casas, flip = false) {
+    super();
+    this.tuning = tuning;
+    this.casas = casas;
+    this.flip = flip;
+  }
 
+  showPosition(rows, tuning, columns, position, flip = false) {
+    const matrix = this.calculateMatrixPositions(rows, tuning, columns, position);
 
-
-    showPosition(rows, names, columns, position){
-        console.log(rows)
-        console.log(names)
-        console.log(columns)
-        console.log(position)
- 
-        var pRow = names.indexOf(position[0]) + 1
-        var pColumn = position[1]
-
-        console.log(pRow)
-        console.log(pColumn)
-        let chord = ""
-
-        for(var i = 0; i <= rows; i++){
-            var linha = ""
-            if(i != 0){
-                linha += `${names[i - 1]} `
-            }else{
-                linha += `  `
-            }
-            for(var j = 1; j <= columns; j++){
-                if(i == 0){
-                    if(j >= 10){
-                        linha += `${j-10} `
-                    }else{
-                        linha += `${j} `
-                    }
-                }else{
-                    if(j == pColumn && i == pRow){
-                        linha += `1|`
-                    }
-                    else{
-                        linha += `_|`
-                    }
-                }
-            }
-
-            chord += (linha + `\n`)
+    let chord = "";
+    chord = matrix.map((value) => {
+      let row = "";
+      if(!flip){
+        for (let i = 0; i < value.length; i++) {
+          if (value[i] === 1) {
+            row += "•|";
+          } else if (value[i] === 0) {
+            row += "_|";
+          }
         }
-        console.log(chord)
+      }
+
+      return row;
+    });
+    chord = chord.join("\n");
+    console.log(chord);
+  }
+
+  calculateMatrixPositions(rows, tuning, columns, position) {
+    const pRow = [];
+    const pColumn = [];
+    let matrix = [];
+
+    for (let i = 0; i < rows; i++) {
+      const [note, col] = position[i];
+      pRow.push(tuning.indexOf(note) + 1);
+      pColumn.push(col);
     }
+
+    for (let i = 0; i <= rows; i++) {
+      let matrixRow = [];
+
+      for (let j = 1; j <= columns; j++) {
+        matrixRow.push(j === pColumn[i - 1] && i === pRow[i - 1] ? 1 : 0);
+      }
+      matrix.push(matrixRow);
+    }
+
+    matrix.shift();
+    console.log(matrix);
+    return matrix;
+  }
+
+  play(note, position) {
+    console.log(`${note} = [${position}]`);
+    this.showPosition(this.tuning.length, this.tuning, this.casas, position);
+  }
 }
 
-class ukulele extends instrumentoCordas{
-    cordas = {
-        qtd: 4,
-        names: ["G", "C", "E", "A"]
-    }
-    casas = 18
+class Ukulele extends InstrumentoCordas {
+  tuning = ["G", "C", "E", "A"];
+  casas = 18;
 
-    do(){
-        const position = ["A", 3]
-        console.log(this.showPosition(this.cordas.qtd, this.cordas.names, this.casas, position))
-    }
-    re(){
-        const position = [["G", 2], ["C", 2], ["E", 2], ["A", 0]]
-    }
-    mi(){
-        const position = [["G", 1], ["C", 4], ["E", 0], ["A", 2]]
-    }
-    fa(){
-        const position = [["G", 2], ["C", 0], ["E", 1], ["A", 0]]
-    }
-    sol(){
-        const position = [["G", 0], ["C", 2], ["E", 3], ["A", 2]]
-    }
-    la(){
-        const position = [["G", 2], ["C", 1], ["E", 0], ["A", 0]]
-    }
-    si(){
-        const position = [["G", 4], ["C", 3], ["E", 2], ["A", 2]]
-    }
+  do(flip = false) {
+    const position = [["G", 0], ["C", 0], ["E", 0], ["A", 3]];
+    this.play("Dó = C", position, flip);
+  }
+
+  re() {
+    const position = [["G", 2], ["C", 2], ["E", 2], ["A", 0]];
+    this.play("Ré = D", position);
+  }
+
+  mi() {
+    const position = [["G", 1], ["C", 4], ["E", 0], ["A", 2]];
+    this.play("Mi = E", position);
+  }
+
+  fa() {
+    const position = [["G", 2], ["C", 0], ["E", 1], ["A", 0]];
+    this.play("Fá = F", position);
+  }
+
+  sol() {
+    const position = [["G", 0], ["C", 2], ["E", 3], ["A", 2]];
+    this.play("Sol = G", position);
+  }
+
+  la() {
+    const position = [["G", 2], ["C", 1], ["E", 0], ["A", 0]];
+    this.play("Lá = A", position);
+  }
+
+  si() {
+    const position = [["G", 4], ["C", 3], ["E", 2], ["A", 2]];
+    this.play("Si = B", position);
+  }
 }
 
-u = new ukulele()
-u.do()
+class Violao extends InstrumentoCordas {
+  tuning = ["E", "B", "G", "D", "A", "E"];
+  casas = 22;
+
+  mi() {
+    const position = [["E", 0], ["B", 2], ["G", 2], ["D", 1], ["A", 0], ["E", 0]];
+    this.play("Mi = E", position);
+  }
+}
+
+const ukulele = new Ukulele();
+ukulele.do();
+ukulele.re();
+ukulele.mi();
+ukulele.fa();
+ukulele.sol();
+ukulele.la();
+ukulele.si();
+
+const violao = new Violao();
+violao.mi();
