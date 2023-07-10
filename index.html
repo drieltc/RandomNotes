@@ -8,11 +8,30 @@
     <title>Random Notes</title>
 </head>
 <body>
+    <div class="config">
+        <div class="UnidadeMedida">
+            <input type="radio" name="BPM" id="UM"> BPM
+            <input type="radio" name="s" id="UM"> Segundos
+        </div>
+        
+        <span class="toggle-label">Show Frets</span>
+        <div class="toggle-switch">
+            <input type="checkbox" id="toggle1" />
+            <label for="toggle1"></label>
+        </div>
+          
+        <span class="toggle-label">Show Chords</span>
+        <div class="toggle-switch">
+            <input type="checkbox" id="toggle2" />
+            <label for="toggle2"></label>
+        </div>          
+    </div>
     <div class="container">
         <input type="number" id="intervalo" placeholder="intervalo entre notas [s]">
         <div id="notes"></div>
         <button id="start-stop-button">Start</button>
     </div>
     <script src="script.js"></script>
+    <script src="instrumentos.js"></script>
 </body>
 </html>

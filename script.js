@@ -36,3 +36,25 @@ function getRandomInt(min = 0, max = 13) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min);
 }
+
+const toggleSwitch1 = document.querySelector('#toggle1');
+toggleSwitch1.addEventListener('change', function() {
+  if (this.checked) {
+    // Perform actions when the first toggle is switched on
+    console.log('Toggle 1 is switched on');
+  } else {
+    // Perform actions when the first toggle is switched off
+    console.log('Toggle 1 is switched off');
+  }
+});
+
+const toggleSwitch2 = document.querySelector('#toggle2');
+toggleSwitch2.addEventListener('change', function() {
+  if (this.checked) {
+    // Perform actions when the second toggle is switched on
+    console.log('Toggle 2 is switched on');
+  } else {
+    // Perform actions when the second toggle is switched off
+    console.log('Toggle 2 is switched off');
+  }
+});
