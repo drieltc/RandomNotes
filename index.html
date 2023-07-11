@@ -10,25 +10,48 @@
 <body>
     <div class="config">
         <div class="UnidadeMedida">
-            <input type="radio" name="BPM" id="UM"> BPM
-            <input type="radio" name="s" id="UM"> Segundos
+            <input type="radio" name="UM" id = "ibpm" value = "BPM"checked> <label for="ibpm">BPM</label> <br>
+            <input type="radio" name="UM" id = "is" value = "s"> <label for="is">Segundos</label> <br>
+            <input type="radio" name="UM" id = "ibps"value = "BPS"> <label for="ibps">BPS</label> <br>
         </div>
-        
-        <span class="toggle-label">Show Frets</span>
-        <div class="toggle-switch">
-            <input type="checkbox" id="toggle1" />
-            <label for="toggle1"></label>
+
+        <div id="escala">
+            <select name="buscaEscala" id="buscaEscala">
+                <option value="Nenhum">Nenhuma</option>
+                <option value="Ukulele">C maj</option>
+                <option value="Violão">C min</option>
+            </select>
         </div>
-          
-        <span class="toggle-label">Show Chords</span>
-        <div class="toggle-switch">
-            <input type="checkbox" id="toggle2" />
-            <label for="toggle2"></label>
-        </div>          
+
+        <div id="instrumento">
+            <select name="buscaInstrumento" id="buscaInstrumento">
+                <option value="Nenhum">Nenhum</option>
+                <option value="Ukulele">Ukulele</option>
+                <option value="Violão">Violão/Guitarra</option>
+            </select>
+        </div>
+
+        <div id="instrumentoCorda">
+            <span class="toggle-label">Show Frets</span>
+            <div class="toggle-switch">
+                <input type="checkbox" id="toggleFrets" />
+                <label for="toggleFrets"></label>
+            </div>
+            
+            <span class="toggle-label">Show Chords</span>
+            <div class="toggle-switch">
+                <input type="checkbox" id="toggleChords" />
+                <label for="toggleChords"></label>
+            </div>
+        </div>        
     </div>
+
     <div class="container">
-        <input type="number" id="intervalo" placeholder="intervalo entre notas [s]">
-        <div id="notes"></div>
+        <input type="number" id="intervalo" placeholder="Velocidade [BPM]">
+        <div id = notesContainer>
+            <span>Próxima Nota</span>
+            <div id="notes"></div>
+        </div>
         <button id="start-stop-button">Start</button>
     </div>
     <script src="script.js"></script>

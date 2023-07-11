@@ -6,7 +6,7 @@ const scales = {
   E_major: ['Mi', 'Fá#', 'Sol#', 'Lá', 'Si', 'Dó#', 'Ré#', 'E', 'F#', 'G#', 'A', 'B', 'C#', 'D#'],
   E_minorNatural: ['Mi', 'Fá#', 'Sol', 'Lá', 'Si', 'Dó', 'Ré', 'E', 'F#', 'G', 'A', 'B', 'C', 'D'],
   F_major: ['Fá', 'Sol', 'Lá', 'Lá#', 'Dó', 'Ré', 'Mi', 'F', 'G', 'A', 'A#', 'C', 'D', 'E'],
-  F_minorNatural: ['Fá', 'Sol', 'Sol#', 'Lá#', 'Dó', 'Dó#', 'Mi#', 'F', 'G', 'G#', 'A#', 'C', 'C#', 'E♭'],
+  F_minorNatural: ['Fá', 'Sol', 'Sol#', 'Lá#', 'Dó', 'Dó#', 'Mi#', 'F', 'G', 'G#', 'A#', 'C', 'C#', 'D#'],
   G_major: ['Sol', 'Lá', 'Si', 'Dó', 'Ré', 'Mi', 'Fá#', 'G', 'A', 'B', 'C', 'D', 'E', 'F#'],
   G_minorNatural: ['Sol', 'Lá', 'Lá#', 'Dó', 'Ré', 'Ré#', 'Fá', 'G', 'A', 'A#', 'C', 'D', 'D#', 'F'],
   A_major: ['Lá', 'Si', 'Dó#', 'Ré', 'Mi', 'Fá#', 'Sol#', 'A', 'B', 'C#', 'D', 'E', 'F#', 'G#'],

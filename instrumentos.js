@@ -1,10 +1,16 @@
 class Instrumento {
-  do() {}
-  re() {}
-  mi() {}
-  fa() {}
-  sol() {}
-  la() {}
+  C() {}
+  Cs() {}
+  D() {}
+  Ds() {}
+  E() {}
+  F() {}
+  Fs() {}
+  G() {}
+  Gs() {}
+  A() {}
+  As () {}
+  B() {}
 }
 
 class InstrumentoCordas extends Instrumento {
@@ -70,37 +76,37 @@ class Ukulele extends InstrumentoCordas {
   tuning = ["G", "C", "E", "A"];
   amntFrets = 18;
 
-  do(options = {}) {
+  C(options = {}) {
     const position = [0, 0, 0, 3];
     this.play("Dó = C", position, options);
   }
 
-  re(options = {}) {
+  D(options = {}) {
     const position = [2, 2, 2, 0];
     this.play("Ré = D", position, options);
   }
 
-  mi(options = {}) {
+  E(options = {}) {
     const position = [1, 4, 0, 2];
     this.play("Mi = E", position, options);
   }
 
-  fa(options = {}) {
+  F(options = {}) {
     const position = [2, 0, 1, 0];
     this.play("Fá = F", position, options);
   }
 
-  sol(options = {}) {
+  G(options = {}) {
     const position = [0, 2, 3, 2];
     this.play("Sol = G", position, options);
   }
 
-  la(options = {}) {
+  A(options = {}) {
     const position = [2, 1, 0, 0];
     this.play("Lá = A", position, options);
   }
 
-  si(options = {}) {
+  B(options = {}) {
     const position = [4, 3, 2, 2];
     this.play("Si = B", position, options);
   }
@@ -110,20 +116,20 @@ class Violao extends InstrumentoCordas {
   tuning = ["E", "A", "D", "G", "B", "e"];
   amntFrets = 22;
 
-  do(options = {}) {
+  C(options = {}) {
     const position = ["X", 3, 2, 0, 1, 0];
     this.play("Dó = C", position, options);
   }
 
-  mi(options = {}) {
+  E(options = {}) {
     const position = [0, 2, 2, 1, 0, 0];
     this.play("Mi = E", position, options);
   }
 }
 
 const v = new Violao();
-v.do({ showNotes: false, showFrets: true, flip:true });
-v.mi({ showNotes: false, showFrets: false, see : 10, flip:false });
+v.C({ showNotes: false, showFrets: true, flip:true });
+v.E({ showNotes: false, showFrets: false, see : 10, flip:false });
 
 const u = new Ukulele();
-u.do({ showNotes: true, showFrets: true, see: 18, flip: true });
+u.C({ showNotes: true, showFrets: true, see: 18, flip: true });
