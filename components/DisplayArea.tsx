@@ -30,6 +30,31 @@ export default function DisplayArea() {
     return (
         <>
             <Container />
+            <div id={styles.controller}>
+                <div>
+                    <ul>
+                        <li>-1</li>
+                        <li>-5</li>
+                        <li>-10</li>
+                        <li>-20</li>
+                    </ul>
+                </div>
+                <div id={styles.central}>
+                    <div id={styles.bpm}>
+                        <div>60</div>
+                        <div>bpm</div>
+                    </div>
+                    <div id={styles.custom}>custom</div>
+                </div>
+                <div>
+                    <ul>
+                        <li>+1</li>
+                        <li>+5</li>
+                        <li>+10</li>
+                        <li>+20</li>
+                    </ul>
+                </div>
+            </div>
         </>
     )
 }

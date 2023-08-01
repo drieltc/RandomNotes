@@ -1,9 +1,10 @@
+import styles from './Footer.module.css'
 export default function Footer() {
     const version = "Version"
     const theme = "theme"
     return (
         <footer>
-            <ul>
+            <ul id={styles.ul}>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Support</a></li>
                 <li><a href="#">GitHub</a></li>

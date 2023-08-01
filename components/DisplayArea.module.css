@@ -13,3 +13,38 @@
 #notesContainer{
     border: 1px solid black;
 }
+
+#controller{
+    background: #2C2E31;
+    color: #646669;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    margin: auto;
+}
+
+#controller ul{
+    margin: 0;
+    padding: 0;
+}
+
+
+#controller ul{
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#central{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
