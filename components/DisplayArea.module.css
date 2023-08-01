@@ -1,0 +1,15 @@
+#notes{
+    height: 110px;
+    width: 25px;
+    color:rgb(206, 209, 212);
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
+
+#start_stop_button{
+    margin:10px
+}
+
+#notesContainer{
+    border: 1px solid black;
+}
