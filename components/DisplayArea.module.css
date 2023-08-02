@@ -1,50 +1,116 @@
-#notes{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+#notes {
     height: 110px;
     width: 25px;
-    color:rgb(206, 209, 212);
-    font-family:Arial, Helvetica, sans-serif;
+    color: rgb(206, 209, 212);
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 10px;
+}
+  
+#start_stop_button {
     margin: 10px;
 }
 
-#start_stop_button{
-    margin:10px
-}
-
-#notesContainer{
+#notesContainer {
     border: 1px solid black;
 }
 
-#controller{
-    background: #2C2E31;
+#controllerBPM {
+    background: #2c2e31;
     color: #646669;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
     margin: auto;
+    padding: 5px 10px;
 }
 
-#controller ul{
+#controllerBPM .buttonsContainer {
     margin: 0;
-    padding: 0;
-}
-
-
-#controller ul{
     padding: 0;
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
-#central{
+#controllerBPM .buttonsContainer button {
+    all: unset;
+    padding: 1px;
+    border-radius: 15%;
+    cursor: pointer;
+    font-family: 'Roboto Flex', sans-serif;
+    transition: color 0.3s ease/* Add 0.3s transition for color */
+}
+
+#central {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    font-family: 'Poppins', sans-serif;
+    height: max-content;
+}
+
+#bpm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 70px;
+    color: yellowgreen;
+    height: 85px;
+    padding-bottom: 10px;
+}
+
+#text{
+    margin-top: -30px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#customButton{
+    all: unset;
+}
+
+#customButton:hover{
+    cursor: pointer;
+}
+
+/* Additional Styles */
+.container {
+/* Add any styles you need for the container */
+}
+
+#notesContainer #notes {
+/* Add any styles for the notes container or notes element */
+}
+
+#start_stop_button {
+/* Add any specific styles for the start/stop button */
+}
+
+#controllerBPM .buttonsContainer button:hover {
+    color: aliceblue;
+}
+
+#bpm {
+/* Add any specific styles for the BPM display */
+}
+
+#metronome:hover{
+    fill:aliceblue
+}
+
+#metronome{
+    width: 25px;
+    height: 25px;
+    border-radius: 15%;
+    padding: 1px;
+    transition: fill 0.3s ease;
 }

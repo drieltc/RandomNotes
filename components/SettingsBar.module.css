@@ -1,79 +1,90 @@
-.settings{
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    font-size: 17px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 17px;
+  font-family: 'Roboto Flex';
 }
 
-.rowSettings, .instrumentSettings{
-    border-radius: 8px;
-    background: #2C2E31;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #646669;
-    height: 30px;
-    display: flex;
-    flex-direction: row;
-    margin:auto;
-    width: fit-content;
-    padding: 0px 10px 0px 10px;
+.rowSettings,
+.instrumentSettings {
+  border-radius: 8px;
+  background: #2c2e31;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #646669;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: fit-content;
+  padding: 0px 10px 0px 10px;
 }
 
-.rowSettings .options, .instrumentSettings .options{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 5px;
-    gap: 20px;
+.rowSettings .options,
+.instrumentSettings .options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  gap: 20px;
 }
 
-.rowSettings .separator, .instrumentSettings .separator{
-    width: 4px;
-    background-color: #323437;
-    height: 20px;
-    border-radius: 4px;
-    align-self: center;
-    margin: 0px 5px 0px 5px
+.rowSettings .separator,
+.instrumentSettings .separator {
+  width: 4px;
+  background-color: #323437;
+  height: 20px;
+  border-radius: 4px;
+  align-self: center;
+  margin: 0px 5px 0px 5px;
 }
 
-.select:hover{
-    color:white;
-    cursor: pointer;
+.select {
+  all: unset;
+  transition: color 0.3s ease/* Add 0.5s transition for color */
 }
 
-.selected{
-    color: yellowgreen;
+.select:hover {
+  color: white;
+  cursor: pointer;
 }
 
-#bpm{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.selected {
+  color: yellowgreen;
 }
 
-#buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 5px;
-    gap: 13px;
-    font-size: 13px;
-    margin: auto;
+#bpm {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-#numberInput{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 13px;
-    color: yellowgreen;
-    display: none;
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 5px;
+  gap: 13px;
+  font-size: 13px;
+  margin: auto;
 }
 
-#numberInput div{
-    font-size: 13px;
-    align-self: last baseline;
+#numberInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 13px;
+  color: yellowgreen;
+  display: none;
+}
+
+#numberInput div {
+  font-size: 13px;
+  align-self: last baseline;
 }
 
 #input::-webkit-outer-spin-button,
@@ -82,10 +93,10 @@
   margin: 0;
 }
 
-#input{
-    all:unset;
-    width: 25px;
-    font-size: 17px;
-    color: yellowgreen;
-    justify-self: center;
+#input {
+  all: unset;
+  width: 25px;
+  font-size: 17px;
+  color: yellowgreen;
+  justify-self: center;
 }
