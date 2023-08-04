@@ -66,6 +66,9 @@
     color: yellowgreen;
     height: 85px;
     padding-bottom: 10px;
+    min-width: 90px;
+    max-width: 133px;
+    transition: all 0.1s ease;
 }
 
 #text{

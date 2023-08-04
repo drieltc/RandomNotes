@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './DisplayArea.module.css';
-import Metronome from '../public/metronome.svg';
+import Metronome from '../public/MetronomeCustomIcon.svg';
 function FreqControl() {
   const [bpmValue, setBPMValue] = useState<number>(60);
 

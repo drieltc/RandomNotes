@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  font-size: 17px;
+  font-size: 15px;
   font-family: 'Roboto Flex';
 }
 
@@ -14,7 +14,8 @@
   background: #2c2e31;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   color: #646669;
-  height: 30px;
+  fill: #646669;
+  height: 35px;
   display: flex;
   flex-direction: row;
   margin: auto;
@@ -44,16 +45,22 @@
 
 .select {
   all: unset;
-  transition: color 0.3s ease/* Add 0.5s transition for color */
+  transition: color 0.3s ease/* Add 0.5s transition for color */;
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .select:hover {
   color: white;
+  fill: white;
   cursor: pointer;
 }
 
 .selected {
   color: yellowgreen;
+  fill: yellowgreen
 }
 
 #bpm {
@@ -73,30 +80,17 @@
   margin: auto;
 }
 
-#numberInput {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-size: 13px;
-  color: yellowgreen;
-  display: none;
-}
-
-#numberInput div {
-  font-size: 13px;
-  align-self: last baseline;
-}
-
-#input::-webkit-outer-spin-button,
-#input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-#input {
-  all: unset;
+.icon{
   width: 25px;
-  font-size: 17px;
-  color: yellowgreen;
-  justify-self: center;
+  height: 25px;
+  border-radius: 15%;
+  padding: 1px;
+  transition: fill 0.3s ease;
+}
+
+.separatorIcon{
+  width: 15px;
+  height: 35px;
+  margin: auto 5px;
+  fill: rgb(60, 60, 60);
 }

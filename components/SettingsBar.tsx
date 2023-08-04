@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SettingsBar.module.css';
+//icons
+import SeparatorIcon from '../public/SeparatorQuarterNotePauseIcon.svg'
+import TimerIcon from '../public/TimerIcon.svg';
+import ZenIcon from '../public/ZenIcon.svg'
+import NoteIcon from '../public/NotesMusic-NotesIcon.svg';
+import ChordIcon from '../public/ChordsIcon.svg';
+import PartitureIcon from '../public/PartitureIcon.svg';
+import NameIcon from '../public/NameIcon';
+import SymbolIcon from '../public/SymbolIcon';
+import GuitarInstrumentIcon from '../public/GuitarInstrumentIcon.svg';
 
 let allSelectedItems:string[] = []  // Lift the state of allItems to the parent component
 
@@ -7,10 +17,12 @@ function SingleOption({
   content,
   isSelected=false,
   onClick,
+  icon,
 }: {
   content: string;
   isSelected?: boolean;
   onClick: () => void;
+  icon?:React.ReactNode;
 }) {
   return (
     <button
@@ -18,7 +30,7 @@ function SingleOption({
       onClick={onClick}
       id={content}
     >
-      {content}
+      {icon} {content}
     </button>
   );
 }
@@ -30,6 +42,7 @@ function GroupOptions({
   multipleSelect = false,
   defaultSelectedItems,
   onClick,
+  icons,
 }:{
   id: string;
   values:string[];
@@ -37,6 +50,7 @@ function GroupOptions({
   multipleSelect?:boolean;
   defaultSelectedItems?:string[]
   onClick?:() => void;
+  icons?:React.ReactNode[];
 }) {
 
   const [selectedItems, setSelectedItems] = useState(defaultSelectedItems || []);
@@ -79,12 +93,13 @@ function GroupOptions({
   return (
     <>
       <div className={styles.options} id={id}>
-        {values.map((value:string) => (
+        {values.map((value:string, index:number) => (
           <SingleOption
             key={value}
             content={value}
             isSelected={selectedItems.includes(value)} // Check if the item is in the selectedItems array
             onClick={() => handleClick(value)} // Pass the function to handle item selection
+            icon={icons? icons[index]: null}
           />
         ))}
       </div>
@@ -94,7 +109,7 @@ function GroupOptions({
 }
 
 function Separator() {
-  return <div className={styles.separator}></div>;
+  return <SeparatorIcon className={styles.separatorIcon} />;
 }
 
 export default function SettingsBar() {
@@ -107,10 +122,49 @@ export default function SettingsBar() {
   return (
     <div className={styles.settings}>
       <div className={styles.rowSettings}>
-        <GroupOptions id="playMode" values={["timer", "zen"]} defaultSelectedItems={['zen']}/>
-        <GroupOptions id="displayMode" values={["notes", "chords"]} defaultSelectedItems={['notes']}/>
-        <GroupOptions id="whatToDisplay" values={["partiture", "name", "symbol"]} defaultSelectedItems={['symbol']} multipleSelect={true} />
-        <GroupOptions id="instrumentSettings" values={["instruments"]} separator={false} onClick={renderIntruments}/>
+        
+        <GroupOptions
+          id="playMode"
+          values={["timer", "zen"]}
+          defaultSelectedItems={['zen']}
+          icons={[
+            <TimerIcon className={styles.icon}/>,
+            <ZenIcon className={styles.icon}/>
+          ]}
+        />
+
+        <GroupOptions
+          id="displayMode"
+          values={["notes", "chords"]}
+          defaultSelectedItems={['notes']}
+          icons = {[
+            <NoteIcon className={styles.icon}/>,
+            <ChordIcon className={styles.icon}/>
+          ]}
+        />
+
+        <GroupOptions
+          id="whatToDisplay"
+          values={["partiture", "name", "symbol"]}
+          defaultSelectedItems={['symbol']}
+          multipleSelect={true}
+          icons={[
+            <PartitureIcon className={styles.icon} />,
+            <NameIcon className={styles.icons} />,
+            <SymbolIcon className={styles.icons} />
+          ]}
+        />
+
+        <GroupOptions
+          id="instrumentSettings"
+          values={["instruments"]}
+          separator={false}
+          onClick={renderIntruments}
+          icons={[
+            <GuitarInstrumentIcon className={styles.icon}/>
+          ]}
+        />
+
       </div>
     </div>
   );
