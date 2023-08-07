@@ -1,9 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
 
 #notes {
-    height: 110px;
-    width: 25px;
-    color: rgb(206, 209, 212);
+    color: rgb(8, 8, 8);
     font-family: Arial, Helvetica, sans-serif;
     margin: 10px;
 }

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SettingsBar.module.css';
+import { useSettings } from './SettingsContext';
+
 //icons
 import SeparatorIcon from '../public/SeparatorQuarterNotePauseIcon.svg'
 import TimerIcon from '../public/TimerIcon.svg';
@@ -10,8 +12,6 @@ import PartitureIcon from '../public/PartitureIcon.svg';
 import NameIcon from '../public/NameIcon';
 import SymbolIcon from '../public/SymbolIcon';
 import GuitarInstrumentIcon from '../public/GuitarInstrumentIcon.svg';
-
-let allSelectedItems:string[] = []  // Lift the state of allItems to the parent component
 
 function SingleOption({
   content,
@@ -40,7 +40,6 @@ function GroupOptions({
   values,
   separator = true,
   multipleSelect = false,
-  defaultSelectedItems,
   onClick,
   icons,
 }:{
@@ -48,34 +47,32 @@ function GroupOptions({
   values:string[];
   separator?:boolean;
   multipleSelect?:boolean;
-  defaultSelectedItems?:string[]
   onClick?:() => void;
   icons?:React.ReactNode[];
 }) {
 
-  const [selectedItems, setSelectedItems] = useState(defaultSelectedItems || []);
+  const { selectedOptions, setSelectedOptions } = useSettings();
+
   // Function to handle item selection
-  const handleItemSelect = (item: string) => {
+  const handleItemSelect = (item:string) => {
     if (!multipleSelect && values.length > 1) {
-      setSelectedItems([item]);
+      setSelectedOptions({ ...selectedOptions, [id]: [item] });
     } else if (!multipleSelect && values.length === 1) {
-      setSelectedItems((prevSelectedItems) =>
-        prevSelectedItems.includes(item) ? [] : [item]
-      );
+      setSelectedOptions((prevSelectedOptions) => ({
+        ...prevSelectedOptions,
+        [id]: prevSelectedOptions[id]?.includes(item) ? [] : [item],
+      }));
     } else {
-      // Check if it is the last selected item and if it's being deselected
-      if (selectedItems.length === 1 && selectedItems.includes(item)) {
-        return; // Prevent deselecting the last selected item
+      if (selectedOptions[id]?.length === 1 && selectedOptions[id]?.includes(item)) {
+        return;
       }
-  
-      setSelectedItems((prevSelectedItems) =>
-        prevSelectedItems.includes(item)
-          ? prevSelectedItems.filter((selectedItem) => selectedItem !== item)
-          : [...prevSelectedItems, item]
-      );
+
+      setSelectedOptions((prevSelectedOptions) => ({
+        ...prevSelectedOptions, [id]: prevSelectedOptions[id]?.includes(item) ? prevSelectedOptions[id].filter((selectedItem:string) => selectedItem !== item)
+        : [...(prevSelectedOptions[id] || []), item],
+      }));
     }
   };
-  
 
   // Create a new function that calls both onClick and handleItemSelect
   const handleClick = (value:string) => {
@@ -84,11 +81,7 @@ function GroupOptions({
     }
     // Always call handleItemSelect to handle item selection
     handleItemSelect(value);
-  };  useEffect(() => {
-    allSelectedItems = selectedItems; // Update the allSelecteedItems variable whenever selectedItems changes
-    console.log(allSelectedItems)
-    //Ainda não tá funcionando da maneira que eu quero. Provavelmente eu crie um useState para cada menu e coloque esses estados como as dependências desse useEffect aqui, mas n sei ainda
-  }, [selectedItems]);
+  }; 
 
   return (
     <>
@@ -97,7 +90,7 @@ function GroupOptions({
           <SingleOption
             key={value}
             content={value}
-            isSelected={selectedItems.includes(value)} // Check if the item is in the selectedItems array
+            isSelected={(selectedOptions[id] || []).includes(value)} // Check if the item is in the state array
             onClick={() => handleClick(value)} // Pass the function to handle item selection
             icon={icons? icons[index]: null}
           />
@@ -124,9 +117,8 @@ export default function SettingsBar() {
       <div className={styles.rowSettings}>
         
         <GroupOptions
-          id="playMode"
-          values={["timer", "zen"]}
-          defaultSelectedItems={['zen']}
+          id='playMode'
+          values={['timer', 'zen']}
           icons={[
             <TimerIcon className={styles.icon}/>,
             <ZenIcon className={styles.icon}/>
@@ -134,9 +126,8 @@ export default function SettingsBar() {
         />
 
         <GroupOptions
-          id="displayMode"
-          values={["notes", "chords"]}
-          defaultSelectedItems={['notes']}
+          id='displayMode'
+          values={['notes', 'chords']}
           icons = {[
             <NoteIcon className={styles.icon}/>,
             <ChordIcon className={styles.icon}/>
@@ -144,9 +135,8 @@ export default function SettingsBar() {
         />
 
         <GroupOptions
-          id="whatToDisplay"
-          values={["partiture", "name", "symbol"]}
-          defaultSelectedItems={['symbol']}
+          id='whatToDisplay'
+          values={['partiture', 'name', 'symbol']}
           multipleSelect={true}
           icons={[
             <PartitureIcon className={styles.icon} />,
@@ -156,8 +146,8 @@ export default function SettingsBar() {
         />
 
         <GroupOptions
-          id="instrumentSettings"
-          values={["instruments"]}
+          id='instrumentSettings'
+          values={['instruments']}
           separator={false}
           onClick={renderIntruments}
           icons={[
@@ -169,5 +159,3 @@ export default function SettingsBar() {
     </div>
   );
 }
-
-export {allSelectedItems}
