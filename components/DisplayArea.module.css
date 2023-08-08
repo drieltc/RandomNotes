@@ -1,117 +1,129 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
 
-#notes {
-    color: rgb(8, 8, 8);
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 10px;
-}
-  
+/* Start/Stop Button */
 #start_stop_button {
-    margin: 10px;
+  all: unset;
+  margin: 0px;
+  background-color: yellowgreen;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  fill: #2c2e31;
 }
 
-#notesContainer {
-    border: 1px solid black;
-}
-
+/* Controller BPM */
 #controllerBPM {
-    background: #2c2e31;
-    color: #646669;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 10px;
-    margin: auto;
-    padding: 5px 10px;
+  background: #2c2e31;
+  color: #646669;
+  padding: 5px 10px;
+  margin: auto;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-#controllerBPM .buttonsContainer {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 12px;
+/* BPM and Button Row */
+#bpm_and_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  height: max-content;
 }
 
-#controllerBPM .buttonsContainer button {
-    all: unset;
-    padding: 1px;
-    border-radius: 15%;
-    cursor: pointer;
-    font-family: 'Roboto Flex', sans-serif;
-    transition: color 0.3s ease/* Add 0.3s transition for color */
+/* BPM Value Container */
+#bpmContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 40px;
+  color: yellowgreen;
+  transition: all 0.1s ease;
+  margin-top: -10px;
 }
 
-#central {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    height: max-content;
+/* BPM Text */
+#bpm_text {
+  font-size: 15px;
 }
 
-#bpm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 70px;
-    color: yellowgreen;
-    height: 85px;
-    padding-bottom: 10px;
-    min-width: 90px;
-    max-width: 133px;
-    transition: all 0.1s ease;
+/* Slider and Buttons Row */
+#sliderRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 }
 
-#text{
-    margin-top: -30px;
-    font-size: 20px;
-    margin-bottom: 10px;
+/* Slider Input */
+#customSliderInput {
+  /* Customize the appearance of the slider thumb here */
+  width: 100%;
+  height: 5px;
+  border-radius: 10px; /* Make it a circle */
+  background-color: #646669; /* Set the background color */
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
 }
 
-#customButton{
-    all: unset;
+#customSliderInput:hover {
+  opacity: 1;
 }
 
-#customButton:hover{
-    cursor: pointer;
+/* Slider Thumb (Webkit) */
+#customSliderInput::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: yellowgreen;
+  cursor: pointer;
 }
 
-/* Additional Styles */
-.container {
-/* Add any styles you need for the container */
+/* Slider Thumb (Moz) */
+#customSliderInput::-moz-range-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: yellowgreen;
+  cursor: pointer;
 }
 
-#notesContainer #notes {
-/* Add any styles for the notes container or notes element */
+/* BPM Buttons */
+.bpmButtons {
+  all: unset;
+  fill: yellowgreen;
+  transition: fill 0.2s;
+  margin-top: 3px;
 }
 
-#start_stop_button {
-/* Add any specific styles for the start/stop button */
+.bpmButtons:hover {
+  color: white;
+  fill: white;
+  cursor: pointer;
 }
 
-#controllerBPM .buttonsContainer button:hover {
-    color: aliceblue;
+/* Notes Container */
+#notesContainer {
+  border: 1px solid black;
 }
 
-#bpm {
-/* Add any specific styles for the BPM display */
-}
 
-#metronome:hover{
-    fill:aliceblue
-}
-
-#metronome{
-    width: 25px;
-    height: 25px;
-    border-radius: 15%;
-    padding: 1px;
-    transition: fill 0.3s ease;
+/* Notes Typography */
+#notes {
+  color: rgb(248, 246, 246);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10px;
 }

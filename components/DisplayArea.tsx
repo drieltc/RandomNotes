@@ -1,73 +1,107 @@
 import React, { useState } from 'react';
 import styles from './DisplayArea.module.css';
-import Metronome from '../public/MetronomeCustomIcon.svg';
 import { useSettings } from './SettingsContext';
+//icons
+import PlusIcon from '../public/PlusIcon.svg'
+import MinusIcon from '../public/MinusIcon.svg'
+import PlayIcon from '../public/PlayIcon.svg'
+import PauseIcon from '../public/PauseIcon.svg'
 
+
+function StartStopButton(bpm){
+  const { selectedOptions } = useSettings();
+
+  const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+  const handleButtonClick = ({playMode, displayMode, whatToDisplay, instrumentSettings, bpm}) => {
+    if (isTimerRunning) {
+      console.log('something');
+      setIsTimerRunning(false)
+    } else {
+      console.log('something else');
+      setIsTimerRunning(true)
+    }
+    console.log(playMode, displayMode, whatToDisplay, instrumentSettings, bpm)
+  }
+
+  return(
+    <button
+      id={styles.start_stop_button}
+      onClick={() => handleButtonClick({
+        playMode: selectedOptions.playMode,
+        displayMode: selectedOptions.displayMode,
+        whatToDisplay: selectedOptions.whatToDisplay,
+        instrumentSettings: selectedOptions.instrumentSettings,
+        bpm: bpm,
+      })}
+    >
+      {isTimerRunning ? <PauseIcon /> : <PlayIcon />}
+    </button>
+    )
+}
 
 function FreqControl({ bpmValue, setBPMValue }) {
   
-  const activateButton = (value:number, sign:string) => {
-    const newBPMValue = sign === '-' ? bpmValue - value : bpmValue + value;
-    setBPMValue(Math.max(0, newBPMValue));
+  const handleSliderChange = (event) => {
+    const newBPMValue = parseInt(event.target.value);
+    setBPMValue(newBPMValue);
   };
-  
-  const ButtonsValues = [1, 5, 10, 20];
-  
-  const renderButtons = (sign:string) =>{
-    return ButtonsValues.map((value) => (
-      <button
-        key={value}
-        className={styles.SingleButtonBPM}
-        onClick={() => activateButton(value, sign)}
-        aria-label={`${sign === '-' ? 'Decrease' : 'Increase'} by ${value}`}
-        >
-        {`${sign === '-' ? '-' : '+'}${value}`}
-      </button>
-    ));
-  }
-  
+
   const handleMouseRest = () => {
     console.log('Explicação BPM')
   }
+
+  const handleButtonClick = (sign) => {
+    setBPMValue(sign === '+' ? bpmValue + 1 : bpmValue - 1);
+  };
   
   return (
     <div id={styles.controllerBPM}>
-      <div className={styles.buttonsContainer}>{renderButtons('-')}</div>
+      <div id={styles.bpm_and_button}>
 
-      <div id={styles.central}>
-        <div id={styles.bpm}>
+          <StartStopButton bpm = {bpmValue}/>
 
-          <div id={styles.bpmValue}
-            onMouseOver={handleMouseRest}
-            //Continuar trabalhos aqui!!! A ideia é: se o mouse AINDA estiver por cima da div, criar renderizar um elemento falando um pouco sobre a unidade de medida usada (bpm)
-            >
-            {bpmValue}
-          </div>
-          <div id={styles.text}>bpm</div>
+          <div id={styles.bpmContainer}>
+
+            <div id={styles.bpmValue}
+              onMouseOver={handleMouseRest}
+              //Continuar trabalhos aqui!!! A ideia é: se o mouse AINDA estiver por cima da div, criar renderizar um elemento falando um pouco sobre a unidade de medida usada (bpm)
+              >
+              {bpmValue}
+            </div>
+
+          <div id={styles.bpm_text}>bpm</div>
+
         </div>
-
-        <button id={styles.customButton}>
-          {/*Será que eu consigo fazer uma animação que faça o metrônomo bater na frequência definida pelo usuário?*/}
-          <Metronome id={styles.metronome} />
-        </button>
       </div>
 
-      <div className={styles.buttonsContainer}>{renderButtons('+')}</div>
+        <div id={styles.sliderRow}>
+
+          <button className={styles.bpmButtons} onClick={() => handleButtonClick('-')}>
+            <MinusIcon />
+          </button>
+
+          <input
+          type="range"
+          name=""
+          id={styles.customSliderInput}
+          value={bpmValue}
+          onChange={handleSliderChange}
+          min={1}
+          max={250}
+          />
+
+          <button className={styles.bpmButtons} onClick={() => handleButtonClick('+')}>
+            <PlusIcon />
+          </button>
+
+        </div>
     </div>
   );
 }
 
 function DisplayNotes({bpmValue}){
-  const [isTimerRunning, setIsTimerRunning] = useState(false);
   const { selectedOptions } = useSettings();
-  
-  function handleButtonClick() {
-    if (isTimerRunning) {
-      console.log('something');
-    } else {
-      console.log('something else');
-    }
-  }
   
   return (
     <div className={styles.displayAreaContainer}>
@@ -80,20 +114,21 @@ function DisplayNotes({bpmValue}){
             </div>
           </div>
         </div>
-        <button id={styles.start_stop_button} onClick={handleButtonClick}>
-          {isTimerRunning ? 'Stop' : 'Start'}
-        </button>
       </div>
   )
 }
 
 export default function DisplayArea() {
-  const [bpmValue, setBPMValue] = useState<number>(60);
-  
+  const [bpmValue, setBPMValue] = useState(60);
+
   return (
     <>
       <DisplayNotes bpmValue={bpmValue} />
-      <FreqControl bpmValue={bpmValue} setBPMValue={setBPMValue} />
+
+      <FreqControl
+        bpmValue={bpmValue}
+        setBPMValue={setBPMValue}
+      />
     </>
   );
 }
