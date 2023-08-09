@@ -37,6 +37,29 @@
   height: max-content;
 }
 
+#goToBpmButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.goToBpmButton{
+  all: unset;
+  cursor: pointer;
+  transition: color ease 0.2s;
+  font-size: x-large;
+}
+
+.goToBpmButton:hover{
+  color: white;
+}
+
+.goToBpmButton span{
+  font-size: xx-small;
+}
+
 /* BPM Value Container */
 #bpmContainer {
   display: flex;
@@ -47,6 +70,12 @@
   color: yellowgreen;
   transition: all 0.1s ease;
   margin-top: -10px;
+}
+
+#bpmValue{
+  width: 75px;
+  display: flex;
+  justify-content: flex-end;
 }
 
 /* BPM Text */

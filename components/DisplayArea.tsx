@@ -40,7 +40,13 @@ function StartStopButton(bpm){
     )
 }
 
-function FreqControl({ bpmValue, setBPMValue }) {
+function FreqControl({ 
+  bpmValue,
+  setBPMValue
+}: {
+    bpmValue: number,
+    setBPMValue: React.Dispatch<React.SetStateAction<number>>
+}) {
   
   const handleSliderChange = (event) => {
     const newBPMValue = parseInt(event.target.value);
@@ -51,15 +57,33 @@ function FreqControl({ bpmValue, setBPMValue }) {
     console.log('Explicação BPM')
   }
 
-  const handleButtonClick = (sign) => {
-    setBPMValue(sign === '+' ? bpmValue + 1 : bpmValue - 1);
+  const handleButtonClick = (sign:string, value:number) => {
+    if (bpmValue <= 249 && bpmValue >=2){
+      setBPMValue(sign === '+' ? bpmValue + value : bpmValue - value);
+    }
   };
+
+  function GoToBpmButton({ value }: { value: number }) {
+    return (
+      <button onClick={() => setBPMValue(value)} className={styles.goToBpmButton}>
+        {value}<span>bpm</span>
+      </button>
+    );
+  }
   
   return (
     <div id={styles.controllerBPM}>
       <div id={styles.bpm_and_button}>
 
           <StartStopButton bpm = {bpmValue}/>
+
+          <div id={styles.goToBpmButtons}>
+            <GoToBpmButton value = {30}/>
+            <GoToBpmButton value = {60}/>
+            <GoToBpmButton value = {90}/>
+            <GoToBpmButton value = {120}/>
+
+          </div>
 
           <div id={styles.bpmContainer}>
 
@@ -77,21 +101,21 @@ function FreqControl({ bpmValue, setBPMValue }) {
 
         <div id={styles.sliderRow}>
 
-          <button className={styles.bpmButtons} onClick={() => handleButtonClick('-')}>
+          <button className={styles.bpmButtons} onClick={() => handleButtonClick('-', 1)}>
             <MinusIcon />
           </button>
 
           <input
-          type="range"
-          name=""
-          id={styles.customSliderInput}
-          value={bpmValue}
-          onChange={handleSliderChange}
-          min={1}
-          max={250}
+            type="range"
+            name=""
+            id={styles.customSliderInput}
+            value={bpmValue}
+            onChange={handleSliderChange}
+            min={1}
+            max={250}
           />
 
-          <button className={styles.bpmButtons} onClick={() => handleButtonClick('+')}>
+          <button className={styles.bpmButtons} onClick={() => handleButtonClick('+', 1)}>
             <PlusIcon />
           </button>
 
