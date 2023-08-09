@@ -94,3 +94,8 @@
   margin: auto 5px;
   fill: rgb(60, 60, 60);
 }
+
+#menus{
+  display: flex;
+  flex-direction: row;
+}

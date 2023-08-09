@@ -13,25 +13,32 @@ import NameIcon from '../public/NameIcon';
 import SymbolIcon from '../public/SymbolIcon';
 import GuitarInstrumentIcon from '../public/GuitarInstrumentIcon.svg';
 
+//Menus
+import { TimerMenu, NotesMenu, ChordsMenu, InstrumentsMenu } from './Menus';
+
 function SingleOption({
   content,
   isSelected=false,
   onClick,
   icon,
+  menu,
 }: {
   content: string;
   isSelected?: boolean;
   onClick: () => void;
-  icon?:React.ReactNode;
+  icon?: React.ReactNode;
+  menu?: React.ReactNode;
 }) {
   return (
+    <>
     <button
       className={`${styles.select} ${isSelected ? styles.selected : ''}`}
       onClick={onClick}
       id={content}
-    >
+      >
       {icon} {content}
     </button>
+    </>
   );
 }
 
@@ -42,6 +49,7 @@ function GroupOptions({
   multipleSelect = false,
   onClick,
   icons,
+  menus,
 }:{
   id: string;
   values:string[];
@@ -49,6 +57,7 @@ function GroupOptions({
   multipleSelect?:boolean;
   onClick?:() => void;
   icons?:React.ReactNode[];
+  menus?:React.ReactNode[];
 }) {
 
   const { selectedOptions, setSelectedOptions } = useSettings();
@@ -93,6 +102,7 @@ function GroupOptions({
             isSelected={(selectedOptions[id] || []).includes(value)} // Check if the item is in the state array
             onClick={() => handleClick(value)} // Pass the function to handle item selection
             icon={icons? icons[index]: null}
+            menu={menus? menus[index]: null}
           />
         ))}
       </div>
@@ -154,7 +164,12 @@ export default function SettingsBar() {
             <GuitarInstrumentIcon className={styles.icon}/>
           ]}
         />
-
+      </div>
+      <div id={styles.menus}>
+          <div id='timerMenu'><TimerMenu visibility={true} /></div>
+          <div id='notesMenu'><NotesMenu visibility={false} /></div>
+          <div id='chordsMenu'><ChordsMenu visibility={false} /></div>
+          <div id='instrumentsMenu'><InstrumentsMenu visibility={false} /></div>
       </div>
     </div>
   );

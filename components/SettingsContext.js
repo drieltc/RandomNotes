@@ -4,7 +4,9 @@ const SettingsContext = createContext();
 
 export const useSettings = () => useContext(SettingsContext);
 
-export const SettingsProvider = ({ children, defaultSelectedOptions = {} }) => {
+export const SettingsProvider = ({
+  children, defaultSelectedOptions = {}
+}) => {
   const [selectedOptions, setSelectedOptions] = useState(defaultSelectedOptions);
 
   return (
