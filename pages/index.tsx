@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { SettingsProvider } from '../components/SettingsContext';
+import { SecondarySettingsProvider } from '../components/SecondarySettingsContext';
 import SettingsBar from '../components/SettingsBar';
 import DisplayArea from '../components/DisplayArea';
 import styles from '../styles/Home.module.css';
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <SettingsProvider defaultSelectedOptions={defaultSelectedOptions}>
+      <SecondarySettingsProvider>
       <div className={styles.container}>
         <Head>
           <title>Random Notes</title>
@@ -32,6 +34,7 @@ export default function Home() {
 
         <Footer />
       </div>
+      </SecondarySettingsProvider>
     </SettingsProvider>
   );
 }

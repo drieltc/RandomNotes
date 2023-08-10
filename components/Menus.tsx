@@ -1,5 +1,6 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import styles from './Menus.module.css'
+import { useSecondarySettings } from './SecondarySettingsContext';
 import notes from '../music/notes'
 import chords from '../music/chords'
 import partiture from '../music/partiture'
@@ -9,12 +10,8 @@ export function TimerMenu({
 }:{
     visibility:boolean
 }) {
-    const [time, setTime] = useState<number>(60)
-    const countdown = () =>{
-        while(time > 0){
-            setTime(time -1)
-        }
-    }
+    const { secondarySelectedOptions, setSecondarySelectedOptions } = useSecondarySettings();
+    setSecondarySelectedOptions({...secondarySelectedOptions, timer:0})
 
     const turnMinSec = (time) => {
         const min = Math.floor(time / 60);
@@ -26,11 +23,21 @@ export function TimerMenu({
             return `Playing time: ${sec} second${sec !== 1 ? 's' : ''}`;
         }
     };
+
+    const handleInputChange = (event) =>{
+        const newTime = parseInt(event.target.value)
+        setSecondarySelectedOptions({...secondarySelectedOptions, timer:newTime})
+    }
     
     return( visibility?
         <menu id={styles.timer}>
-            Playing time: {time} seconds
-            <input type="number" name="" id={styles.timerInput} value={time}/>
+            <p>Playing time: {secondarySelectedOptions["timer"]} seconds</p>
+            <input
+                type="number"
+                name=""
+                id={styles.timerInput}
+                value={secondarySelectedOptions["timer"]}
+                onChange={handleInputChange}/>
         </menu>
         :null
     )

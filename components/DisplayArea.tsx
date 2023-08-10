@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './DisplayArea.module.css';
 import { useSettings } from './SettingsContext';
+import { useSecondarySettings } from './SecondarySettingsContext';
 //icons
 import PlusIcon from '../public/PlusIcon.svg'
 import MinusIcon from '../public/MinusIcon.svg'
@@ -126,15 +127,17 @@ function FreqControl({
 
 function DisplayNotes({bpmValue}){
   const { selectedOptions } = useSettings();
-  
+  const { secondarySelectedOptions } = useSecondarySettings();
   return (
     <div className={styles.displayAreaContainer}>
         <div id={styles.notesContainer}>
           <div id={styles.notes}>
             <div>
-              <h3>Selected Options:</h3>
-              <pre>{JSON.stringify(selectedOptions, null, 2)}</pre>
+              <h3>Primary Selected Options:</h3>
+                <pre>{JSON.stringify(selectedOptions, null, 2)}</pre>
                 <pre>{JSON.stringify({bpm : bpmValue} , null, 2)}</pre>
+              <h3>Secondary Selected Options</h3>
+              <pre>{JSON.stringify(secondarySelectedOptions, null, 2)}</pre>
             </div>
           </div>
         </div>

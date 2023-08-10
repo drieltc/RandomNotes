@@ -10,7 +10,10 @@ export const SettingsProvider = ({
   const [selectedOptions, setSelectedOptions] = useState(defaultSelectedOptions);
 
   return (
-    <SettingsContext.Provider value={{ selectedOptions, setSelectedOptions }}>
+    <SettingsContext.Provider
+      value={{
+        selectedOptions, setSelectedOptions
+      }}>
       {children}
     </SettingsContext.Provider>
   );
