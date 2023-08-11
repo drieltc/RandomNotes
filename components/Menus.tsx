@@ -1,9 +1,10 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import styles from './Menus.module.css'
 import { useSecondarySettings } from './SecondarySettingsContext';
 import notes from '../music/notes'
 import chords from '../music/chords'
 import partiture from '../music/partiture'
+import { type } from 'os';
 
 export function TimerMenu({
     visibility=true
@@ -11,33 +12,53 @@ export function TimerMenu({
     visibility:boolean
 }) {
     const { secondarySelectedOptions, setSecondarySelectedOptions } = useSecondarySettings();
-    setSecondarySelectedOptions({...secondarySelectedOptions, timer:0})
+
+    useEffect(() => {
+        setSecondarySelectedOptions({ timer: '' });
+    }, []);
 
     const turnMinSec = (time) => {
-        const min = Math.floor(time / 60);
-        const sec = time % 60;
-        
-        if (min > 0) {
-            return `Playing time: ${min} minute${min > 1 ? 's' : ''} and ${sec} second${sec !== 1 ? 's' : ''}`;
-        } else {
-            return `Playing time: ${sec} second${sec !== 1 ? 's' : ''}`;
+        if (typeof(time) === 'number'){
+            if(time > 0){
+
+                const min = Math.floor(time / 60);
+                const sec = time % 60;
+                
+                if (min > 0) {
+                    return `Playing time: ${min} minute${min > 1 ? 's' : ''} and ${sec} second${sec !== 1 ? 's' : ''}`;
+                } else {
+                    return `Playing time: ${sec} second${sec !== 1 ? 's' : ''}`;
+                }
+            }
+            else{
+                return `NEGATIVE TIME`
+            }
+        }
+        else {
+            return `Playing time: 0 seconds`
         }
     };
 
     const handleInputChange = (event) =>{
         const newTime = parseInt(event.target.value)
-        setSecondarySelectedOptions({...secondarySelectedOptions, timer:newTime})
+        setSecondarySelectedOptions({
+            ...secondarySelectedOptions,
+            timer:
+            isNaN(newTime)?
+            undefined : parseInt(newTime.toString(), 10)
+        })
     }
     
     return( visibility?
         <menu id={styles.timer}>
-            <p>Playing time: {secondarySelectedOptions["timer"]} seconds</p>
+            <p>{turnMinSec(secondarySelectedOptions["timer"])}</p>
             <input
                 type="number"
                 name=""
                 id={styles.timerInput}
-                value={secondarySelectedOptions["timer"]}
-                onChange={handleInputChange}/>
+                value={secondarySelectedOptions["timer"]?secondarySelectedOptions["timer"]:''}
+                onChange={handleInputChange}
+            />
         </menu>
         :null
     )

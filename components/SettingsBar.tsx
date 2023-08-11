@@ -117,11 +117,6 @@ function Separator() {
 
 export default function SettingsBar() {
 
-  const renderIntruments = () =>{
-    console.log('Renderizar barra de instrumentos')
-    //Agora é desenvolver essa função agui
-  }
-
   return (
     <div className={styles.settings}>
       <div className={styles.rowSettings}>
@@ -159,7 +154,6 @@ export default function SettingsBar() {
           id='instrumentSettings'
           values={['instruments']}
           separator={false}
-          onClick={renderIntruments}
           icons={[
             <GuitarInstrumentIcon className={styles.icon}/>
           ]}

@@ -7,7 +7,7 @@ export const useSecondarySettings = () => useContext(SecondarySettingsContext);
 export const SecondarySettingsProvider = ({
   children,
 }) => {
-  const [secondarySelectedOptions, setSecondarySelectedOptions] = useState({}); // You can initialize this with default values if needed
+  const [secondarySelectedOptions, setSecondarySelectedOptions] = useState({});
 
   return (
     <SecondarySettingsContext.Provider
