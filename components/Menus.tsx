@@ -19,7 +19,7 @@ export function TimerMenu({
 
     const turnMinSec = (time) => {
         if (typeof(time) === 'number'){
-            if(time > 0){
+            if(time >= 0){
 
                 const min = Math.floor(time / 60);
                 const sec = time % 60;
@@ -30,7 +30,7 @@ export function TimerMenu({
                     return `Playing time: ${sec} second${sec !== 1 ? 's' : ''}`;
                 }
             }
-            else{
+            else if (time < 0){
                 return `NEGATIVE TIME`
             }
         }

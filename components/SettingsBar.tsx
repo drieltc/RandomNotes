@@ -22,18 +22,39 @@ function SingleOption({
   onClick,
   icon,
   menu,
+  menuVisibility,
+  setMenuVisibility,
 }: {
   content: string;
   isSelected?: boolean;
   onClick: () => void;
   icon?: React.ReactNode;
   menu?: React.ReactNode;
+  menuVisibility?:Object;
+  setMenuVisibility?:React.Dispatch<React.SetStateAction<{}>>;
+
 }) {
+
+  const changeVisualization = (content, setMenuVisibility) => {
+    const updatedMenuVisibility = {};
+    for (const key in menuVisibility) {
+      updatedMenuVisibility[key] = key === content;
+    }
+    setMenuVisibility(updatedMenuVisibility);
+  };
+
+  const handleClick = () => {
+    if (onClick){
+      onClick()
+    }
+    changeVisualization(content, setMenuVisibility)
+  }
+
   return (
     <>
     <button
       className={`${styles.select} ${isSelected ? styles.selected : ''}`}
-      onClick={onClick}
+      onClick={handleClick}
       id={content}
       >
       {icon} {content}
@@ -50,6 +71,8 @@ function GroupOptions({
   onClick,
   icons,
   menus,
+  menuVisibility,
+  setMenuVisibility,
 }:{
   id: string;
   values:string[];
@@ -58,6 +81,8 @@ function GroupOptions({
   onClick?:() => void;
   icons?:React.ReactNode[];
   menus?:React.ReactNode[];
+  menuVisibility?:Object;
+  setMenuVisibility?:React.Dispatch<React.SetStateAction<{}>>;
 }) {
 
   const { selectedOptions, setSelectedOptions } = useSettings();
@@ -103,6 +128,8 @@ function GroupOptions({
             onClick={() => handleClick(value)} // Pass the function to handle item selection
             icon={icons? icons[index]: null}
             menu={menus? menus[index]: null}
+            menuVisibility={menuVisibility}
+            setMenuVisibility={setMenuVisibility}
           />
         ))}
       </div>
@@ -117,6 +144,14 @@ function Separator() {
 
 export default function SettingsBar() {
 
+  const [menuVisibility, setMenuVisibility] = useState({
+    timer: false,
+    zen: false,
+    notes: false,
+    chords: false,
+    instruments: false
+  });
+
   return (
     <div className={styles.settings}>
       <div className={styles.rowSettings}>
@@ -128,6 +163,8 @@ export default function SettingsBar() {
             <TimerIcon className={styles.icon}/>,
             <ZenIcon className={styles.icon}/>
           ]}
+          menuVisibility={menuVisibility}
+          setMenuVisibility={setMenuVisibility}
         />
 
         <GroupOptions
@@ -137,6 +174,8 @@ export default function SettingsBar() {
             <NoteIcon className={styles.icon}/>,
             <ChordIcon className={styles.icon}/>
           ]}
+          menuVisibility={menuVisibility}
+          setMenuVisibility={setMenuVisibility}
         />
 
         <GroupOptions
@@ -148,6 +187,8 @@ export default function SettingsBar() {
             <NameIcon className={styles.icons} />,
             <SymbolIcon className={styles.icons} />
           ]}
+          menuVisibility={menuVisibility}
+          setMenuVisibility={setMenuVisibility}
         />
 
         <GroupOptions
@@ -157,13 +198,32 @@ export default function SettingsBar() {
           icons={[
             <GuitarInstrumentIcon className={styles.icon}/>
           ]}
+          menuVisibility={menuVisibility}
+          setMenuVisibility={setMenuVisibility}
         />
+
       </div>
       <div id={styles.menus}>
-          <div id='timerMenu'><TimerMenu visibility={true} /></div>
-          <div id='notesMenu'><NotesMenu visibility={false} /></div>
-          <div id='chordsMenu'><ChordsMenu visibility={false} /></div>
-          <div id='instrumentsMenu'><InstrumentsMenu visibility={false} /></div>
+          <div id='timerMenu'>
+            <TimerMenu 
+              visibility={menuVisibility["timer"]}
+            />
+          </div>
+          <div id='notesMenu'>
+            <NotesMenu
+              visibility={menuVisibility["notes"]}
+              />
+            </div>
+          <div id='chordsMenu'>
+            <ChordsMenu
+              visibility={menuVisibility["chords"]}
+            />
+          </div>
+          <div id='instrumentsMenu'>
+            <InstrumentsMenu
+             visibility={menuVisibility["instruments"]}
+            />
+          </div>
       </div>
     </div>
   );
