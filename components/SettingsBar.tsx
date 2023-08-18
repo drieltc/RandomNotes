@@ -32,16 +32,25 @@ function SingleOption({
   menu?: React.ReactNode;
   menuVisibility?:Object;
   setMenuVisibility?:React.Dispatch<React.SetStateAction<{}>>;
-
 }) {
 
   const changeVisualization = (content, setMenuVisibility) => {
     const updatedMenuVisibility = {};
+
     for (const key in menuVisibility) {
-      updatedMenuVisibility[key] = key === content;
+      if(key != "keep"){
+        menuVisibility[key] === true ?
+        (updatedMenuVisibility[key] = false): (updatedMenuVisibility[key] = key === content);
+      }else{
+        updatedMenuVisibility["keep"] = menuVisibility["keep"]
+      }
+      if (content === "instruments"){
+        updatedMenuVisibility["keep"] = !menuVisibility["keep"]
+        updatedMenuVisibility["instruments"] = updatedMenuVisibility["keep"]
+      }
     }
     setMenuVisibility(updatedMenuVisibility);
-  };
+};
 
   const handleClick = () => {
     if (onClick){
@@ -144,13 +153,19 @@ function Separator() {
 
 export default function SettingsBar() {
 
+  
   const [menuVisibility, setMenuVisibility] = useState({
     timer: false,
     zen: false,
-    notes: false,
+    notes: true,
     chords: false,
-    instruments: false
+    instruments: false,
+    keep:false
   });
+  
+  useEffect(() => {
+    console.log('Updated menuVisibility:', menuVisibility);
+}, [menuVisibility])
 
   return (
     <div className={styles.settings}>
@@ -221,7 +236,7 @@ export default function SettingsBar() {
           </div>
           <div id='instrumentsMenu'>
             <InstrumentsMenu
-             visibility={menuVisibility["instruments"]}
+             visibility={menuVisibility["instruments"] && menuVisibility["keep"]}
             />
           </div>
       </div>

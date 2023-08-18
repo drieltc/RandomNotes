@@ -4,7 +4,7 @@ import { useSecondarySettings } from './SecondarySettingsContext';
 import notes from '../music/notes'
 import chords from '../music/chords'
 import partiture from '../music/partiture'
-import { type } from 'os';
+import instruments from '../music/instruments'
 
 export function TimerMenu({
     visibility=true
@@ -97,7 +97,12 @@ export function InstrumentsMenu({
 }) {
     return(visibility?
         <menu id={styles.instruments}>
-            Olá
+            <select name='Instrument Select' id='InstrumentSelect'>
+            {Object.keys(instruments).map(instrumentKey =>(
+                <option key={instrumentKey}>{instrumentKey}</option>
+            ))}
+            </select>
+            String? (Frets[] Tunning[]) : null
         </menu>
         :null
     )
