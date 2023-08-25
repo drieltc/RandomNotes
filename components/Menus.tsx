@@ -6,6 +6,9 @@ import chords from '../music/chords'
 import partiture from '../music/partiture'
 import instruments from '../music/instruments'
 
+import TuningIcon from '../public/TuningIcon';
+import FretsIcon from '../public/FretsIcon.svg'
+
 export function TimerMenu({
     visibility=true
 }:{
@@ -95,14 +98,79 @@ export function InstrumentsMenu({
 }:{
     visibility:boolean
 }) {
+    const [ FretsAndTunning, setFretsAndTunning ] = useState<boolean>(false)
+    const { secondarySelectedOptions, setSecondarySelectedOptions } = useSecondarySettings();
+    const [isSelected, setIsSelected] = useState([false, false]);
+
+    useEffect(() => {
+        setSecondarySelectedOptions({
+            ...secondarySelectedOptions,
+            frets:isSelected[0],
+            tuning:isSelected[1]
+        })
+        console.log(secondarySelectedOptions)
+    }, [isSelected[0], isSelected[1]]);
+    
+    function RenderFretsAndTunning(){
+        
+        const options = ["Frets", "Tuning"]
+        const icons = [<FretsIcon className={styles.icons} />, <TuningIcon className={styles.icons}/>]
+
+        const handleButtonClick = (index) => {
+            setIsSelected(prevSelected => {
+                const newSelected = [...prevSelected]; // Create a copy of the array
+                newSelected[index] = !newSelected[index]; // Toggle the value at the specified index
+                return newSelected;
+            });
+        };
+
+    
+        return(
+            <div id={styles.frets_tuning}>
+            {options.map((option, index) => (
+                <button
+                    key={index}
+                    className={`${styles.select} ${isSelected[index] ? styles.selected : ''}`}
+                    onClick={() => handleButtonClick(index)}
+                >
+                    {icons[index]}{option}
+                </button>
+            ))}
+        </div>
+        )
+    }
+    
+
+    const handleSelectChange = (event) => {
+        const selectedInstrument = instruments[event.target.value]
+        if(selectedInstrument["strings"]){
+            setFretsAndTunning(true)
+        }else{
+            setFretsAndTunning(false)
+        }
+    };
+
+
     return(visibility?
         <menu id={styles.instruments}>
-            <select name='Instrument Select' id='InstrumentSelect'>
-            {Object.keys(instruments).map(instrumentKey =>(
-                <option key={instrumentKey}>{instrumentKey}</option>
-            ))}
-            </select>
-            String? (Frets[] Tunning[]) : null
+            <div id={styles.customSelect}>
+                <select
+                    name='Instrument Select'
+                    id={styles.instrumentSelectElement}
+                    onChange={handleSelectChange}
+                >
+                    {Object.keys(instruments).map(instrument =>(
+                        <option
+                            key={instrument}
+                            value={instrument}
+                            className={styles.InstrumentOptionElement}
+                        >
+                            {instrument}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            {FretsAndTunning? <RenderFretsAndTunning /> : null}
         </menu>
         :null
     )

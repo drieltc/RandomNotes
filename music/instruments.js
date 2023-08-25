@@ -1,4 +1,5 @@
 const instruments = {
+    Choose:{},
     Guitar:{
         strings: 6,
         frets: 22,

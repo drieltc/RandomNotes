@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './SettingsBar.module.css';
 import { useSettings } from './SettingsContext';
 
@@ -159,13 +159,9 @@ export default function SettingsBar() {
     zen: false,
     notes: true,
     chords: false,
-    instruments: false,
+  instruments: false,
     keep:false
   });
-  
-  useEffect(() => {
-    console.log('Updated menuVisibility:', menuVisibility);
-}, [menuVisibility])
 
   return (
     <div className={styles.settings}>
