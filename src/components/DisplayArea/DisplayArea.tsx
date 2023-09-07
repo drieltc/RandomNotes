@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import styles from './DisplayArea.module.css';
-import { useSettings } from './SettingsContext';
-import { useSecondarySettings } from './SecondarySettingsContext';
+import { useSettings } from '../SettingsContext';
 //icons
-import PlusIcon from '../public/PlusIcon.svg'
-import MinusIcon from '../public/MinusIcon.svg'
-import PlayIcon from '../public/PlayIcon.svg'
-import PauseIcon from '../public/PauseIcon.svg'
+import PlusIcon from '../../assets/svg/PlusIcon.svg'
+import MinusIcon from '../../assets/svg/MinusIcon.svg'
+import PlayIcon from '../../assets/svg/PlayIcon.svg'
+import PauseIcon from '../../assets/svg/PauseIcon.svg'
 
 
 function StartStopButton(bpm){
@@ -127,7 +126,6 @@ function FreqControl({
 
 function DisplayNotes({bpmValue}){
   const { selectedOptions } = useSettings();
-  const { secondarySelectedOptions } = useSecondarySettings();
   return (
     <div className={styles.displayAreaContainer}>
         <div id={styles.notesContainer}>
@@ -136,8 +134,6 @@ function DisplayNotes({bpmValue}){
               <h3>Primary Selected Options:</h3>
                 <pre>{JSON.stringify(selectedOptions, null, 2)}</pre>
                 <pre>{JSON.stringify({bpm : bpmValue} , null, 2)}</pre>
-              <h3>Secondary Selected Options</h3>
-              <pre>{JSON.stringify(secondarySelectedOptions, null, 2)}</pre>
             </div>
           </div>
         </div>

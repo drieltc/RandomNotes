@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/SettingsContext.js"  ],
+, "src/components/SettingsContext.js", "src/config/context/SettingsContext.js"  ],
   "exclude": [
     "node_modules"
   ]

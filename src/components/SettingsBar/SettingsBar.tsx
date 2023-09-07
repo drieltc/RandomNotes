@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styles from './SettingsBar.module.css';
-import { useSettings } from './SettingsContext';
+import { useSettings } from '../SettingsContext';
+import { SettingsContext } from '../../config/context/SettingsContext';
+
+//components
+import Separator from './Separator';
 
 //icons
-import SeparatorIcon from '../public/SeparatorQuarterNotePauseIcon.svg'
-import TimerIcon from '../public/TimerIcon.svg';
-import ZenIcon from '../public/ZenIcon.svg'
-import NoteIcon from '../public/NotesMusic-NotesIcon.svg';
-import ChordIcon from '../public/ChordsIcon.svg';
-import PartitureIcon from '../public/PartitureIcon.svg';
-import NameIcon from '../public/NameIcon';
-import SymbolIcon from '../public/SymbolIcon';
-import GuitarInstrumentIcon from '../public/GuitarInstrumentIcon.svg';
+import TimerIcon from '../../assets/svg/TimerIcon.svg';
+import ZenIcon from '../../assets/svg/ZenIcon.svg'
+import NoteIcon from '../../assets/svg/NotesMusic-NotesIcon.svg';
+import ChordIcon from '../../assets/svg/ChordsIcon.svg';
+import PartitureIcon from '../../assets/svg/PartitureIcon.svg';
+import NameIcon from '../../assets/NameIcon';
+import SymbolIcon from '../../assets/SymbolIcon';
+import GuitarInstrumentIcon from '../../assets/svg/GuitarInstrumentIcon.svg';
 
 //Menus
-import { TimerMenu, NotesMenu, ChordsMenu, InstrumentsMenu } from './Menus';
+import { TimerMenu, NotesMenu, ChordsMenu, InstrumentsMenu } from '../Menus/Menus';
 
 function SingleOption({
   content,
@@ -82,6 +85,7 @@ function GroupOptions({
   menus,
   menuVisibility,
   setMenuVisibility,
+  handleFunction,
 }:{
   id: string;
   values:string[];
@@ -92,6 +96,7 @@ function GroupOptions({
   menus?:React.ReactNode[];
   menuVisibility?:Object;
   setMenuVisibility?:React.Dispatch<React.SetStateAction<{}>>;
+  handleFunction?:() => void
 }) {
 
   const { selectedOptions, setSelectedOptions } = useSettings();
@@ -147,19 +152,15 @@ function GroupOptions({
   );
 }
 
-function Separator() {
-  return <SeparatorIcon className={styles.separatorIcon} />;
-}
-
 export default function SettingsBar() {
+  const {handleInstrumentClick} = useContext(SettingsContext)
 
-  
   const [menuVisibility, setMenuVisibility] = useState({
     timer: false,
     zen: false,
     notes: true,
     chords: false,
-  instruments: false,
+    instruments: false,
     keep:false
   });
 
@@ -211,6 +212,7 @@ export default function SettingsBar() {
           ]}
           menuVisibility={menuVisibility}
           setMenuVisibility={setMenuVisibility}
+          handleFunction = {handleInstrumentClick}
         />
 
       </div>

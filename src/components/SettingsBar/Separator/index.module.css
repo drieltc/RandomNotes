@@ -1,0 +1,15 @@
+.separator{
+    width: 4px;
+    background-color: #323437;
+    height: 20px;
+    border-radius: 4px;
+    align-self: center;
+    margin: 0px 5px 0px 5px;
+}
+
+.separatorIcon{
+    width: 15px;
+    height: 35px;
+    margin: auto 5px;
+    fill: rgb(60, 60, 60);
+}

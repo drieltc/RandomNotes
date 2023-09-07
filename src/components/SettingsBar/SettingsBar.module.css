@@ -45,7 +45,7 @@
 
 .select {
   all: unset;
-  transition: color 0.3s ease/* Add 0.5s transition for color */;
+  transition: color 0.3s ease;
   display:flex;
   flex-direction: row;
   justify-content: center;

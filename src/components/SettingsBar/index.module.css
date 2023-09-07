@@ -1,0 +1,27 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 15px;
+  font-family: 'Roboto Flex';
+}
+
+.rowSettings,
+.instrumentSettings {
+  border-radius: 8px;
+  background: #2c2e31;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  color: #646669;
+  fill: #646669;
+  height: 35px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: fit-content;
+  padding: 0px 10px 0px 10px;
+}
+
+#menus{
+  display: flex;
+  flex-direction: row;
+}

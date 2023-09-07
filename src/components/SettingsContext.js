@@ -18,3 +18,18 @@ export const SettingsProvider = ({
     </SettingsContext.Provider>
   );
 };
+
+/*Options = {
+	bpm: bpmValue,
+	instrument: {
+		name: instrumentName,
+		frets: true XOR false,
+		tuning: true XOR false,
+	},
+	notes: {
+		visual: sharp XOR flat,
+		excludedNotes: []
+	},
+	chords: 'dont know yet',
+	timer: timerValue,
+} */

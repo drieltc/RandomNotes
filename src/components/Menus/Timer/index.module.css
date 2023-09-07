@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+#timer{
+    background-color: #2c2e31;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    color: #646669;
+    flex-wrap: wrap;
+    margin: 0;
+    gap: 5px;
+    transition: all ease 0.2s;
+}
+
+#timer p{
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-size: smaller;
+    transition: all ease 0.2s;
+}
+
+#timerInput{
+    all: unset;
+    width: 100%;
+    appearance: textfield;
+    background-color: #545557;
+    border-radius: 5px;
+    color: white;
+    margin: 0;
+    height: 30px;
+    padding: 2px;
+    transition: all ease 0.2s;
+}
+
+#timerInput::-webkit-outer-spin-button,
+#timerInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

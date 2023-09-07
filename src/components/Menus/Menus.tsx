@@ -1,24 +1,20 @@
 import React, {useContext, useState, useEffect} from 'react'
 import styles from './Menus.module.css'
-import { useSecondarySettings } from './SecondarySettingsContext';
-import notes from '../music/notes'
-import chords from '../music/chords'
-import partiture from '../music/partiture'
-import instruments from '../music/instruments'
+import notes from '../../config/music/notes'
+import chords from '../../config/music/chords'
+import partiture from '../../config/music/partiture'
+import instruments from '../../config/music/instruments'
 
-import TuningIcon from '../public/TuningIcon';
-import FretsIcon from '../public/FretsIcon.svg'
+import SharpIcon from '../../assets/SharpIcon'
+import FlatIcon from '../../assets/FlatIcon'
+import TuningIcon from '../../assets/TuningIcon';
+import FretsIcon from '../../assets/svg/FretsIcon.svg'
 
-export function TimerMenu({
+export default function TimerMenu({
     visibility=true
 }:{
     visibility:boolean
 }) {
-    const { secondarySelectedOptions, setSecondarySelectedOptions } = useSecondarySettings();
-
-    useEffect(() => {
-        setSecondarySelectedOptions({ timer: '' });
-    }, []);
 
     const turnMinSec = (time) => {
         if (typeof(time) === 'number'){
@@ -44,12 +40,6 @@ export function TimerMenu({
 
     const handleInputChange = (event) =>{
         const newTime = parseInt(event.target.value)
-        setSecondarySelectedOptions({
-            ...secondarySelectedOptions,
-            timer:
-            isNaN(newTime)?
-            undefined : parseInt(newTime.toString(), 10)
-        })
     }
     
     return( visibility?
@@ -72,9 +62,44 @@ export function NotesMenu({
 }:{
     visibility:boolean
 }) {
+        
+        const [myNotes, setMyNotes] = useState()
+                
+        const [isSelected, setIsSelected] = useState<boolean[]>([false, false]);
+
+
+        function RenderSharpOrFlat(){
+        
+            const options = ["Sharp", "Flat"]
+            const icons = [<SharpIcon className={styles.icons} />, <FlatIcon className={styles.icons}/>]
+    
+            const handleButtonClick = (index) => {
+                setIsSelected(prevSelected => {
+                    const newSelected = [...prevSelected]; // Create a copy of the array
+                    newSelected[index] = !newSelected[index]; // Toggle the value at the specified index
+                    return newSelected;
+                });
+            };
+        
+            return(
+                <div id={styles.sharp_flat}>
+                {options.map((option, index) => (
+                    <button
+                        key={index}
+                        className={`${styles.select} ${isSelected[index] ? styles.selected : ''}`}
+                        onClick={() => handleButtonClick(index)}
+                    >
+                        {icons[index]}{option}
+                    </button>
+                ))}
+            </div>
+            )
+        }
+
     return( visibility?
         <menu id={styles.notes}>
             Notes
+            <RenderSharpOrFlat />
         </menu>
         :null
     )
@@ -99,17 +124,10 @@ export function InstrumentsMenu({
     visibility:boolean
 }) {
     const [ FretsAndTunning, setFretsAndTunning ] = useState<boolean>(false)
-    const { secondarySelectedOptions, setSecondarySelectedOptions } = useSecondarySettings();
-    const [isSelected, setIsSelected] = useState([false, false]);
 
-    useEffect(() => {
-        setSecondarySelectedOptions({
-            ...secondarySelectedOptions,
-            frets:isSelected[0],
-            tuning:isSelected[1]
-        })
-        console.log(secondarySelectedOptions)
-    }, [isSelected[0], isSelected[1]]);
+    const [isSelected, setIsSelected] = useState<boolean[]>([false, false]);
+    const [instrument, setInstrument] = useState<string>(null)
+
     
     function RenderFretsAndTunning(){
         
@@ -143,6 +161,7 @@ export function InstrumentsMenu({
 
     const handleSelectChange = (event) => {
         const selectedInstrument = instruments[event.target.value]
+        setInstrument(selectedInstrument.name)
         if(selectedInstrument["strings"]){
             setFretsAndTunning(true)
         }else{
