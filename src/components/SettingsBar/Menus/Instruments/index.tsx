@@ -1,10 +1,10 @@
 import {useState, useContext} from 'react'
-import { SettingsContext } from '../../../config/context/SettingsContext';
+import { SettingsContext } from '../../../../config/context/SettingsContext';
 import styles from './index.module.css'
 
 import RenderFretsAndTunning from './RenderFretsAndTuning';
 
-import instruments from '../../../config/music/instruments';
+import instruments from '../../../../config/music/instruments';
 
 export default function InstrumentsMenu({
     visibility=true

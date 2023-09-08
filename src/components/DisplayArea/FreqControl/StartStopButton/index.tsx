@@ -3,8 +3,8 @@ import { SettingsContext } from '../../../../config/context/SettingsContext'
 
 import styles from './index.module.css'
 
-import PlayIcon from '../../assets/svg/PlayIcon.svg'
-import PauseIcon from '../../assets/svg/PauseIcon.svg'
+import PlayIcon from '../../../../assets/svg/PlayIcon.svg'
+import PauseIcon from '../../../../assets/svg/PauseIcon.svg'
 
 export default function StartStopButton(bpm){
     const { playMode, displayMode, whatToDisplay, instruments } = useContext(SettingsContext);

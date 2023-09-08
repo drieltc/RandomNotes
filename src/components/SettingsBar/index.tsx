@@ -16,10 +16,10 @@ import SymbolIcon from "../../assets/SymbolIcon";
 
 import GuitarInstrumentIcon from '../../assets/svg/GuitarInstrumentIcon.svg'
 
-import TimerMenu from '../Menus/Timer';
-import NotesMenu from '../Menus/Notes';
-import ChordsMenu from '../Menus/Chords';
-import InstrumentsMenu from '../Menus/Instruments';
+import TimerMenu from './Menus/Timer';
+import NotesMenu from './Menus/Notes';
+import ChordsMenu from './Menus/Chords';
+import InstrumentsMenu from './Menus/Instruments';
 
 export default function SettingsBar(){
     const {playMode, handlePlayModeClick, displayMode, handleDisplayModeClick, whatToDisplay, handleWhatToDisplayClick, instruments, handleInstrumentClick, menuVisibility} = useContext(SettingsContext)

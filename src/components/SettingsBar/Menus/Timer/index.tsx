@@ -1,6 +1,6 @@
 import styles from './index.module.css'
 import React, { useContext } from 'react';
-import { SettingsContext } from '../../../config/context/SettingsContext';
+import { SettingsContext } from '../../../../config/context/SettingsContext';
 
 export default function TimerMenu({
     visibility=true

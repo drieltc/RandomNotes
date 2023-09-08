@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { SettingsContextProvider } from '../src/config/context/SettingsContext';
 import SettingsBar from '../src/components/SettingsBar';
-import DisplayArea from '../src/components/DisplayArea/DisplayArea';
+import DisplayArea from '../src/components/DisplayArea';
 import styles from '../styles/Home.module.css';
 import Footer from '../src/components/Footer/Footer';
 import Header from '../src/components/Header/Header';
@@ -20,9 +20,9 @@ export default function Home() {
           <SettingsContextProvider >
             <SettingsBar />
 
-            {/*<main>
+            <main>
               <DisplayArea />
-            </main>*/}
+            </main>
           </SettingsContextProvider>
 
           <Footer />

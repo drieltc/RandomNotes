@@ -25,15 +25,15 @@ export function SettingsContextProvider({children}){
 
     const Settings = {
         playMode: playMode,
+        timerValue: timerValue,
         displayMode: displayMode,
-        whatToDisplay: whatToDisplay,
-        instruments: instruments,
-        bpmValue: bpmValue,
-        instrumentName: instrumentName,
-        stringSettings:stringSettings,
         notesSettings: notesSettings,
         excludedNotes: excludedNotes,
-        timerValue: timerValue,
+        whatToDisplay: whatToDisplay,
+        instruments: instruments,
+        instrumentName: instrumentName,
+        stringSettings:stringSettings,
+        bpmValue: bpmValue,
     }
    
     function handlePlayModeClick(value){

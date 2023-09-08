@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+/* Slider and Buttons Row */
+#sliderRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Slider Input */
+#customSliderInput {
+  /* Customize the appearance of the slider thumb here */
+  width: 100%;
+  height: 5px;
+  border-radius: 10px; /* Make it a circle */
+  background-color: #646669; /* Set the background color */
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+#customSliderInput:hover {
+  opacity: 1;
+}
+
+/* Slider Thumb (Webkit) */
+#customSliderInput::-webkit-slider-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: yellowgreen;
+  cursor: pointer;
+}
+
+/* Slider Thumb (Moz) */
+#customSliderInput::-moz-range-thumb {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: yellowgreen;
+  cursor: pointer;
+}
+
+/* BPM Buttons */
+.bpmButtons {
+  all: unset;
+  fill: yellowgreen;
+  transition: fill 0.2s;
+  margin-top: 3px;
+}
+
+.bpmButtons:hover {
+  color: white;
+  fill: white;
+  cursor: pointer;
+}

@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+/* Start/Stop Button */
+#start_stop_button {
+  all: unset;
+  margin: 0px;
+  background-color: yellowgreen;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  fill: #2c2e31;
+  transition: background-color 0.2s;
+}
+
+#start_stop_button:hover{
+  background-color: white;
+}

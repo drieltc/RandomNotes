@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+/* Controller BPM */
+#controllerBPM {
+  background: #2c2e31;
+  color: #646669;
+  padding: 5px 10px;
+  margin: auto;
+  width: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* BPM and Button Row */
+#bpm_and_button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  height: max-content;
+}
+
+#goToBpmButtons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  transition: all 0.2s ease;
+}
+
+/* BPM Value Container */
+#bpmContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: center;
+  font-size: 40px;
+  color: yellowgreen;
+  margin-top: -10px;
+}
+
+#bpm_text {
+  font-size: 15px;
+}

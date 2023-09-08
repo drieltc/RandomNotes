@@ -1,10 +1,10 @@
 import styles from './index.module.css'
 import { useContext } from 'react';
-import { SettingsContext } from '../../../../config/context/SettingsContext';
-import GroupSelectOptions from '../../../SettingsBar/GroupSelectOptions';
+import { SettingsContext } from '../../../../../config/context/SettingsContext';
+import GroupSelectOptions from '../../../GroupSelectOptions';
 
-import TuningIcon from '../../../../assets/TuningIcon'
-import FretsIcon from '../../../../assets/svg/FretsIcon.svg'
+import TuningIcon from '../../../../../assets/TuningIcon'
+import FretsIcon from '../../../../../assets/svg/FretsIcon.svg'
 
 export default function RenderFretsAndTunning(){
     const {stringSettings, handleStringSettingsClick} = useContext(SettingsContext)

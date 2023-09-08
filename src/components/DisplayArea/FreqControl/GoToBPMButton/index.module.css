@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+.goToBpmButton{
+  all: unset;
+  cursor: pointer;
+  transition: color ease 0.2s;
+  font-size: x-large;
+  transition: all 0.2s ease;
+}
+
+.goToBpmButton:hover{
+  color: white;
+}
+
+.goToBpmButton span{
+  font-size: xx-small;
+}

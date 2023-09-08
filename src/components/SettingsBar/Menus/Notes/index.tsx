@@ -1,8 +1,8 @@
 import {useContext} from 'react'
-import { SettingsContext } from '../../../config/context/SettingsContext';
+import { SettingsContext } from '../../../../config/context/SettingsContext';
 
 import styles from './index.module.css'
-import RenderSharpOrFlat from './RendeSharpOrFlat';
+import RenderSharpOrFlat from './RenderSharpOrFlat';
 
 export default function NotesMenu({
     visibility=true
