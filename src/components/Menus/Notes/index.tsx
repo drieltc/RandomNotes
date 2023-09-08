@@ -7,7 +7,7 @@ import RenderSharpOrFlat from './RendeSharpOrFlat';
 export default function NotesMenu({
     visibility=true
 }:{
-    visibility:boolean
+    visibility?:boolean
 }) {
     return( visibility?
         <menu id={styles.notes}>

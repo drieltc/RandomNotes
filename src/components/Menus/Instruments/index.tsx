@@ -9,7 +9,7 @@ import instruments from '../../../config/music/instruments';
 export default function InstrumentsMenu({
     visibility=true
 }:{
-    visibility:boolean
+    visibility?:boolean
 }) {
     const {setInstrumentName} = useContext(SettingsContext)
     const [FretsAndTunning, setFretsAndTunning] = useState(false)

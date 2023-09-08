@@ -3,7 +3,7 @@ import styles from './index.module.css'
 export default function ChordsMenu({
     visibility=true
 }:{
-    visibility:boolean
+    visibility?:boolean
 }) {
     return(visibility?
         <menu id={styles.chords}>

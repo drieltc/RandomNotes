@@ -1,6 +1,10 @@
 import React from 'react';
 
-export default function NameIcon({ className }) {
+export default function NameIcon({
+  className
+}:{
+  className?: string
+}) {
   return (
     <div
         className={className}

@@ -5,7 +5,7 @@ import { SettingsContext } from '../../../config/context/SettingsContext';
 export default function TimerMenu({
     visibility=true
 }:{
-    visibility:boolean
+    visibility?:boolean
 }) {
     const {timerValue, setTimerValue} = useContext(SettingsContext)
 
