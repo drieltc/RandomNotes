@@ -1,6 +1,6 @@
 import styles from './index.module.css'
 
-export function ChordsMenu({
+export default function ChordsMenu({
     visibility=true
 }:{
     visibility:boolean

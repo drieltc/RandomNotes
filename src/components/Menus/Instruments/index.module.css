@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+#instruments{
+    background-color: #2c2e31;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px;
+    color: #646669;
+    stroke: #646669;
+    margin: 0;
+    gap: 12px;
+} 
+
+
+#instrumentSelectElement{
+    font-family: 'Roboto Flex', sans-serif;
+    font-size: 15px;
+    color: yellowgreen;
+    background-color: #2c2e31;
+    border: 1px solid #5f5e5e;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+#instrumentSelectElement:focus{
+    border-color: yellowgreen;
+}
+
+.InstrumentOptionElement {
+    /* Styling for individual options */
+    background-color: #2c2e31;
+    color: #646669;
+}
+
+.InstrumentOptionElement:hover {
+    color: #646669;
+    background: yellow;
+}

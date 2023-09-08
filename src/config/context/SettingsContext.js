@@ -6,14 +6,23 @@ export function SettingsContextProvider({children}){
     const [playMode, setPlayMode] = useState({"timer": false, "zen": true})
     const [timerValue, setTimerValue] = useState(0)
     const [displayMode, setDisplayMode] = useState({"notes": true, "chords": false})
-    const [notesVisual, setNotesVisual] = useState({"sharp": true, "flat":false})
+    const [notesSettings, setNotesSettings] = useState({"sharp": true, "flat":false})
     const [excludedNotes, setExcludedNotes] = useState([])
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
-    const [frets, setFrets] = useState(false)
-    const [tuning, setTuning] = useState(false)
+    const [stringSettings, setStringSettings] = useState({"frets":false, "tuning": false})
     const [bpmValue, setBPMValue] = useState(60)
+
+    const [menuVisibility, setMenuVisibility] = useState({
+        timer: false,
+        zen: false,
+        notes: true,
+        chords: false,
+        instruments: false,
+        keep:false
+    });
+
     const Settings = {
         playMode: playMode,
         displayMode: displayMode,
@@ -21,9 +30,8 @@ export function SettingsContextProvider({children}){
         instruments: instruments,
         bpmValue: bpmValue,
         instrumentName: instrumentName,
-        frets: frets,
-        tuning: tuning,
-        notesVisual: notesVisual,
+        stringSettings:stringSettings,
+        notesSettings: notesSettings,
         excludedNotes: excludedNotes,
         timerValue: timerValue,
     }
@@ -68,27 +76,56 @@ export function SettingsContextProvider({children}){
         setInstruments(updatedInstruments)
     }
 
-    function handleNotesVisualClick(value){
-        let updatedNotesVisual = {}
+    function handleNotesSettingsClick(value){
+        let updatedNotesSettings = {}
         if (value === "flat"){
-            updatedDisplayMode = {...displayMode, "flat":true, "sharp":false}
+            updatedNotesSettings = {...notesSettings, "flat":true, "sharp":false}
         }
         if (value === "sharp"){
-            updatedDisplayMode = {...displayMode, "flat":false, "sharp":true}
+            updatedNotesSettings = {...notesSettings, "flat":false, "sharp":true}
         }
 
-        setDisplayMode(updatedDisplayMode)
+        setNotesSettings(updatedNotesSettings)
+    }
+
+    function changeMenuVisualization(value){
+        const updatedMenuVisibility = {}
+        
+        for (const key in menuVisibility){
+            if (key != "keep"){
+                menuVisibility[key] === true?
+                (updatedMenuVisibility[key] = false):
+                (updatedMenuVisibility[key] = key === value)
+            }
+            else{
+                updatedMenuVisibility["keep"] = menuVisibility["keep"]
+            }
+            if (value === "instruments"){
+                updatedMenuVisibility["keep"] = !menuVisibility["keep"]
+                updatedMenuVisibility["instruments"] = updatedMenuVisibility["keep"] 
+            }
+        }
+        setMenuVisibility(updatedMenuVisibility)
+    }
+
+    function handleStringSettingsClick(value){
+        setStringSettings((prevStrings) => ({
+            ...prevStrings,
+            [value]: !prevStrings[value],
+          }));
+          console.log('pelo menos chama essa bomba')
     }
     return(
 
         <SettingsContext.Provider 
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
-                displayMode, setDisplayMode, handleDisplayModeClick, notesVisual, setNotesVisual, handleNotesVisualClick, excludedNotes, setExcludedNotes,
+                displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, excludedNotes, setExcludedNotes,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
-                instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, frets, setFrets, tuning, setTuning,
+                instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,
                 Settings,
+                menuVisibility, setMenuVisibility, changeMenuVisualization
             }}>
                 {children}
         </SettingsContext.Provider>

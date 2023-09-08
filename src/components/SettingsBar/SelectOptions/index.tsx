@@ -1,22 +1,30 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import styles from './index.module.css'
+import { SettingsContext } from "../../../config/context/SettingsContext";
 
 export default function SelectOption({
     icon,
     content,
     isSelected,
     handleFunction,
+    updateMenus=true
 }:{
     icon?: React.ReactNode;
     content?: string;
     isSelected?: any;
     handleFunction?: (content: string) => any;
-    state?:any
+    state?:any;
+    updateMenus?:boolean;
 }){
+
+    const {changeMenuVisualization} = useContext(SettingsContext)
 
     const handleClick = () => {
         if (handleFunction) {
             handleFunction(content)
+        }
+        if(updateMenus){
+            changeMenuVisualization(content)
         }
     }
 

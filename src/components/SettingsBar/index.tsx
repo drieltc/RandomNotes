@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { SettingsContext } from '../../config/context/SettingsContext';
 
 import GroupSelectOptions from "./GroupSelectOptions";
-import styles from './SettingsBar.module.css'
+import styles from './index.module.css'
 
 import TimerIcon from '../../assets/svg/TimerIcon.svg';
 import ZenIcon from '../../assets/svg/ZenIcon.svg'
@@ -16,12 +16,32 @@ import SymbolIcon from "../../assets/SymbolIcon";
 
 import GuitarInstrumentIcon from '../../assets/svg/GuitarInstrumentIcon.svg'
 
+import TimerMenu from '../Menus/Timer';
+import NotesMenu from '../Menus/Notes';
+import ChordsMenu from '../Menus/Chords';
+import InstrumentsMenu from '../Menus/Instruments';
+
 export default function SettingsBar(){
-    const {playMode, handlePlayModeClick, displayMode, handleDisplayModeClick, whatToDisplay, handleWhatToDisplayClick, instruments, handleInstrumentClick} = useContext(SettingsContext)
+    const {playMode, handlePlayModeClick, displayMode, handleDisplayModeClick, whatToDisplay, handleWhatToDisplayClick, instruments, handleInstrumentClick, menuVisibility} = useContext(SettingsContext)
+
+    const groupsOptions = {
+        playMode: [playMode, handlePlayModeClick, [<TimerIcon/>, <ZenIcon />]],
+        displayMode: [displayMode, handleDisplayModeClick, [<NoteIcon/>, <ZenIcon />]],
+        whatToDisplay:[whatToDisplay, handleWhatToDisplayClick, [<PartitureIcon />, <NameIcon />, <SymbolIcon />], {updateMenus:false}],
+        instruments: [instruments, handleInstrumentClick, [<GuitarInstrumentIcon />], {separator: false}]
+    }
     
+    const groupMenus = {
+        timerMenu: ['timerMenu', <TimerMenu />, ['timer']],
+        notesMenu: ['notesMenu', <NotesMenu />, ['notes']],
+        chordsMenu: ['chordsMenu', <ChordsMenu />, ['chords']],
+        instrumentsMenu: ['instrumentsMenu', <InstrumentsMenu />, ['instruments', 'keep']]
+    }
+
     return(
         <div className={styles.settings}>
             <div className={styles.rowSettings}>
+
                 <GroupSelectOptions
                     id='playMode'
                     states={playMode}
@@ -51,6 +71,7 @@ export default function SettingsBar(){
                         <SymbolIcon className={styles.icons} />
                     ]}
                     handleFunction = {handleWhatToDisplayClick}
+                    updateMenus = {false}
                 />
 
                 <GroupSelectOptions
@@ -63,6 +84,28 @@ export default function SettingsBar(){
                     handleFunction = {handleInstrumentClick}
                 />
             </div>
+            <div id={styles.menus}>
+                <div id='timerMenu'>
+                    <TimerMenu 
+                        visibility={menuVisibility["timer"]}
+                    />
+                </div>
+                <div id='notesMenu'>
+                    <NotesMenu 
+                        visibility={menuVisibility["notes"]}
+                    />
+                </div>
+                <div id='chordsMenu'>
+                    <ChordsMenu 
+                        visibility={menuVisibility["chords"]}
+                    />
+                </div>
+                <div id='instrumentsMenu'>
+                    <InstrumentsMenu
+                        visibility={menuVisibility["instruments"] && menuVisibility["keep"]}
+                    />
+                </div>
+          </div>
         </div>
     )
 }

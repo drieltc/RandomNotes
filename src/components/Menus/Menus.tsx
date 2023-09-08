@@ -10,7 +10,7 @@ import FlatIcon from '../../assets/FlatIcon'
 import TuningIcon from '../../assets/TuningIcon';
 import FretsIcon from '../../assets/svg/FretsIcon.svg'
 
-export default function TimerMenu({
+export function TimerMenu({
     visibility=true
 }:{
     visibility:boolean

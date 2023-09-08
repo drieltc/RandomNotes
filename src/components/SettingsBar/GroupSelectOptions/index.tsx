@@ -8,12 +8,14 @@ export default function GroupSelectOptions({
     icons,
     handleFunction,
     states,
+    updateMenus,
   }:{
     id: string;
     separator?:boolean;
     icons?:React.ReactNode[];
     handleFunction?: Function;
-    states?: any
+    states?: any;
+    updateMenus?:boolean;
   }) {
 
     const handleChildClick = (content:string) => {
@@ -33,6 +35,7 @@ export default function GroupSelectOptions({
               isSelected = {Object.values(states)[index]}
               handleFunction={handleChildClick}
               state={states? states[index]:null}
+              updateMenus = {updateMenus}
             />
           ))}
         </div>

@@ -25,6 +25,9 @@ export default function TimerMenu({
             else if (time < 0){
                 return `NEGATIVE TIME`
             }
+            else{
+                return `Playing time: 0 seconds`
+            }
         }
         else {
             return `Playing time: 0 seconds`
@@ -34,6 +37,7 @@ export default function TimerMenu({
     const handleInputChange = (event) =>{
         const newTime = parseInt(event.target.value)
         setTimerValue(newTime)
+        console.log(typeof(timerValue))
     }
     
     return( visibility?
