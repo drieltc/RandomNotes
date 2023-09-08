@@ -113,7 +113,6 @@ export function SettingsContextProvider({children}){
             ...prevStrings,
             [value]: !prevStrings[value],
           }));
-          console.log('pelo menos chama essa bomba')
     }
     return(
 

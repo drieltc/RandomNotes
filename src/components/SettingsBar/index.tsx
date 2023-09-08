@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { SettingsContext } from '../../config/context/SettingsContext';
-
 import GroupSelectOptions from "./GroupSelectOptions";
 import styles from './index.module.css'
 
@@ -25,86 +24,43 @@ export default function SettingsBar(){
     const {playMode, handlePlayModeClick, displayMode, handleDisplayModeClick, whatToDisplay, handleWhatToDisplayClick, instruments, handleInstrumentClick, menuVisibility} = useContext(SettingsContext)
 
     const groupsOptions = {
-        playMode: [playMode, handlePlayModeClick, [<TimerIcon/>, <ZenIcon />]],
-        displayMode: [displayMode, handleDisplayModeClick, [<NoteIcon/>, <ZenIcon />]],
-        whatToDisplay:[whatToDisplay, handleWhatToDisplayClick, [<PartitureIcon />, <NameIcon />, <SymbolIcon />], {updateMenus:false}],
-        instruments: [instruments, handleInstrumentClick, [<GuitarInstrumentIcon />], {separator: false}]
+        'playMode': [playMode, handlePlayModeClick, [<TimerIcon/>, <ZenIcon />]],
+        'displayMode': [displayMode, handleDisplayModeClick, [<NoteIcon/>, <ChordIcon />]],
+        'whatToDisplay':[whatToDisplay, handleWhatToDisplayClick, [<PartitureIcon />, <NameIcon />, <SymbolIcon />], {updateMenus:false}],
+        'instruments': [instruments, handleInstrumentClick, [<GuitarInstrumentIcon />], {separator: false}]
     }
     
     const groupMenus = {
-        timerMenu: ['timerMenu', <TimerMenu />, ['timer']],
-        notesMenu: ['notesMenu', <NotesMenu />, ['notes']],
-        chordsMenu: ['chordsMenu', <ChordsMenu />, ['chords']],
-        instrumentsMenu: ['instrumentsMenu', <InstrumentsMenu />, ['instruments', 'keep']]
+        'timerMenu': <TimerMenu visibility = {menuVisibility["timer"]}/>,
+        'notesMenu': <NotesMenu visibility = {menuVisibility["notes"]}/>,
+        'chordsMenu': <ChordsMenu visibility = {menuVisibility["chords"]}/>,
+        'instrumentsMenu': <InstrumentsMenu visibility = {menuVisibility["instruments"] && menuVisibility["keep"]}/>,
     }
 
     return(
         <div className={styles.settings}>
             <div className={styles.rowSettings}>
 
-                <GroupSelectOptions
-                    id='playMode'
-                    states={playMode}
-                    icons={[
-                        <TimerIcon className={styles.icon}/>,
-                        <ZenIcon className={styles.icon}/>
-                    ]}
-                    handleFunction = {handlePlayModeClick}
-                />
-
-                <GroupSelectOptions
-                    id='displayMode'
-                    states = {displayMode}
-                    icons = {[
-                        <NoteIcon className={styles.icon}/>,
-                        <ChordIcon className={styles.icon}/>
-                    ]}
-                    handleFunction = {handleDisplayModeClick}
-                />  
-
-                <GroupSelectOptions
-                    id='whatToDisplay'
-                    states = {whatToDisplay}
-                    icons={[
-                        <PartitureIcon className={styles.icon} />,
-                        <NameIcon className={styles.icons} />,
-                        <SymbolIcon className={styles.icons} />
-                    ]}
-                    handleFunction = {handleWhatToDisplayClick}
-                    updateMenus = {false}
-                />
-
-                <GroupSelectOptions
-                    id='instrumentSettings'
-                    states = {instruments}
-                    separator={false}
-                    icons={[
-                        <GuitarInstrumentIcon className={styles.icon}/>
-                    ]}
-                    handleFunction = {handleInstrumentClick}
-                />
+            {Object.entries(groupsOptions).map(([optionKey, optionValue]) => (
+                    <GroupSelectOptions
+                        key={optionKey}
+                        id={optionKey}
+                        states={optionValue[0]}
+                        handleFunction={optionValue[1]}
+                        icons={optionValue[2]}
+                        updateMenus={optionValue[3]?.updateMenus}
+                        separator={optionValue[3]?.separator}
+                    />
+                ))}
             </div>
             <div id={styles.menus}>
-                <div id='timerMenu'>
-                    <TimerMenu 
-                        visibility={menuVisibility["timer"]}
-                    />
-                </div>
-                <div id='notesMenu'>
-                    <NotesMenu 
-                        visibility={menuVisibility["notes"]}
-                    />
-                </div>
-                <div id='chordsMenu'>
-                    <ChordsMenu 
-                        visibility={menuVisibility["chords"]}
-                    />
-                </div>
-                <div id='instrumentsMenu'>
-                    <InstrumentsMenu
-                        visibility={menuVisibility["instruments"] && menuVisibility["keep"]}
-                    />
-                </div>
+
+                {Object.entries(groupMenus).map(([optionKey, optionValue]) => (
+                    <div id={optionKey}>
+                        {optionValue}
+                    </div>
+                ))}
+
           </div>
         </div>
     )
