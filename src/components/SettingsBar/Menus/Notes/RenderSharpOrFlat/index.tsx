@@ -23,6 +23,6 @@ export default function RenderSharpOrFlat(){
                 handleFunction={handleNotesSettingsClick}
                 updateMenus = {false}
             />
-    </div>
+        </div>
     )
 }

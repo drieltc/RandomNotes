@@ -7,7 +7,7 @@ export function SettingsContextProvider({children}){
     const [timerValue, setTimerValue] = useState(0)
     const [displayMode, setDisplayMode] = useState({"notes": true, "chords": false})
     const [notesSettings, setNotesSettings] = useState({"sharp": true, "flat":false})
-    const [excludedNotes, setExcludedNotes] = useState([])
+    const [selectedNotes, setSelectedNotes] = useState({'C':true, 'C#':true, 'D':true, 'D#':true, 'E':true, 'F':true, 'F#':false, 'G':true, 'G#':true, 'A':true, 'A#':true, 'B':true})
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
@@ -20,7 +20,7 @@ export function SettingsContextProvider({children}){
         notes: true,
         chords: false,
         instruments: false,
-        keep:false
+        keep: false
     });
 
     const Settings = {
@@ -28,21 +28,21 @@ export function SettingsContextProvider({children}){
         timerValue: timerValue,
         displayMode: displayMode,
         notesSettings: notesSettings,
-        excludedNotes: excludedNotes,
+        selectedNotes: selectedNotes,
         whatToDisplay: whatToDisplay,
         instruments: instruments,
         instrumentName: instrumentName,
-        stringSettings:stringSettings,
+        stringSettings: stringSettings,
         bpmValue: bpmValue,
     }
    
     function handlePlayModeClick(value){
         let updatedPlayMode = {}
         if (value === "zen"){
-            updatedPlayMode = {...playMode, "timer": false, "zen":true}
+            updatedPlayMode = {...playMode, "timer": false, "zen": true}
         }
         if (value === "timer"){
-            updatedPlayMode = {...playMode, "timer": true, "zen":false}
+            updatedPlayMode = {...playMode, "timer": true, "zen": false}
         }
         setPlayMode(updatedPlayMode)
     }
@@ -50,10 +50,10 @@ export function SettingsContextProvider({children}){
     function handleDisplayModeClick(value){
         let updatedDisplayMode = {}
         if (value === "notes"){
-            updatedDisplayMode = {...displayMode, "notes":true, "chords":false}
+            updatedDisplayMode = {...displayMode, "notes": true, "chords": false}
         }
         if (value === "chords"){
-            updatedDisplayMode = {...displayMode, "notes":false, "chords":true}
+            updatedDisplayMode = {...displayMode, "notes": false, "chords": true}
         }
 
         setDisplayMode(updatedDisplayMode)
@@ -61,8 +61,7 @@ export function SettingsContextProvider({children}){
     
     function handleWhatToDisplayClick(value) {
         const hasOtherTrueValue = Object.values(whatToDisplay).filter((item) => item === true).length;
-        console.log(hasOtherTrueValue)
-      
+
         if (hasOtherTrueValue > 1 || whatToDisplay[value] === false) {
           setWhatToDisplay((prevDisplay) => ({
             ...prevDisplay,
@@ -79,10 +78,10 @@ export function SettingsContextProvider({children}){
     function handleNotesSettingsClick(value){
         let updatedNotesSettings = {}
         if (value === "flat"){
-            updatedNotesSettings = {...notesSettings, "flat":true, "sharp":false}
+            updatedNotesSettings = {...notesSettings, "flat": true, "sharp": false}
         }
         if (value === "sharp"){
-            updatedNotesSettings = {...notesSettings, "flat":false, "sharp":true}
+            updatedNotesSettings = {...notesSettings, "flat": false, "sharp": true}
         }
 
         setNotesSettings(updatedNotesSettings)
@@ -114,12 +113,39 @@ export function SettingsContextProvider({children}){
             [value]: !prevStrings[value],
           }));
     }
+
+    function handleNoteSelectItem(value){
+        setSelectedNotes((prevNote) => ({
+            ...prevNote,
+            [value]: !prevNote[value],
+        }));
+    }
+
+    function handleNoteSelectAll(value) {
+        let updatedSelectedNotes = {};
+      
+        if (value === 'check all') {
+          // Set all notes to true
+          for (const note in selectedNotes) {
+            updatedSelectedNotes[note] = true;
+          }
+        } else if (value === 'uncheck all') {
+          // Set all notes to false
+          for (const note in selectedNotes) {
+            updatedSelectedNotes[note] = false;
+          }
+        }
+      
+        setSelectedNotes(updatedSelectedNotes);
+      }
+      
+
     return(
 
         <SettingsContext.Provider 
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
-                displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, excludedNotes, setExcludedNotes,
+                displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
                 instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,

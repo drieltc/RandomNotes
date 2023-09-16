@@ -34,7 +34,6 @@ export default function GroupSelectOptions({
               content={state? state : null}
               isSelected = {Object.values(states)[index]}
               handleFunction={handleChildClick}
-              state={states? states[index]:null}
               updateMenus = {updateMenus}
             />
           ))}

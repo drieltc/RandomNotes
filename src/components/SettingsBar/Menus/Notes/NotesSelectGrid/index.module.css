@@ -1,0 +1,7 @@
+#selectNotes{
+    display: grid;
+	grid-template-columns: 40px 40px 40px 40px;
+    font-size: 20px;
+    gap: 7px;
+    font-family: 'Poppins', sans-serif;
+}

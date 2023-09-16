@@ -1,6 +1,5 @@
 import {useContext} from 'react'
 import { SettingsContext } from '../../../config/context/SettingsContext';
-
 import styles from './index.module.css'
 
 export default function DisplayNotes(){

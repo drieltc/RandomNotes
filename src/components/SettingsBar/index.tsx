@@ -52,7 +52,9 @@ export default function SettingsBar(){
                         separator={optionValue[3]?.separator}
                     />
                 ))}
+                
             </div>
+
             <div id={styles.menus}>
 
                 {Object.entries(groupMenus).map(([optionKey, optionValue]) => (
