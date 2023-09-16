@@ -11,9 +11,10 @@ export default function NameIcon({
         style={{
             marginRight: '5px',
             fontSize: '23px',
-            fontWeight: 600,
+            fontWeight: 400,
+            fontFamily:'Poppins',
         }}>
-      Mi#
+      La#
     </div>
   );
 }
