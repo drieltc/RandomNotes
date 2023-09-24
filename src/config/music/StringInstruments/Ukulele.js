@@ -4,130 +4,184 @@ class Ukulele extends StringInstrument {
   tuning = ["G", "C", "E", "A"];
   amntFrets = 18;
 
-  //MAJOR CHORDS
-  C_Major(options = {}) {
-    const position = [0,0,0,3];
-    this.play("Dó = C", position, options);
-  }
+  chordPositions = {
+    C:{
+        Major: [0, 0, 0, 3],
+        Augmented: [],
+        Major_Sixth:[0, 0, 0, 0],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [0, 3, 3, 3],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [0, 2, 3, 3],
+        Sus4: [0, 0, 1, 3],
+    },
+    C_Sharp:{
+        Major: [1, 1, 1, 4], // [1, 1, 1, [1, 4]],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [1, 1, 0, 4],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    D:{
+        Major: [2, 2, 2, 0],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [2, 2, 1, 0],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    D_Sharp:{
+        Major: [0, 3, 3, 1],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [3, 3, 2, 1],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    E:{
+        Major: [4, 4, 4, 2],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [0, 4, 0, 3],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    F:{
+        Major: [2, 0, 1, 0],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [1, 0, 1, 3],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    F_Sharp:{
+        Major: [3, 1, 2, 1],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [2, 1, 2, 0],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    G:{
+        Major: [0, 2, 3, 2],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [0, 2, 3, 1],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    G_Sharp:{
+        Major: [1, 3, 3, 3],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [1, 3, 4, 2],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    A:{
+        Major:  [2, 1, 0, 0],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [2, 0, 0, 0],
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    A_Sharp:{
+        Major: [3, 0, 1, 3],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [3, 1, 1, 1], //[[1, 3], [1], [1], [1]] or [[1, 3], 1, 1, 1]
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+    B:{
+        Major: [4, 3, 2, 2],
+        Augmented: [],
+        Major_Sixth:[],
+        Major_Seventh:[],
+        Major_Ninth:[],
+        Minor: [4, 2, 2, 2], //[[2, 4], [2], [2], [2]] or [[2, 4], 2, 2, 2]
+        Diminished: [],
+        Minor_Sixth: [],
+        Minor_Seventh: [],
+        Minor_Ninth: [],
+        Sus2: [],
+        Sus4: [],
+    },
+  };
 
-  C_Sharp_Major(options = {}){
-    const position = [1, 1, 1, 4]
-    //const position = [[1], [1], [1], [1, 4]]
-    this.play('Sustained Do = C#', position, options)
-  }
-
-  D_Major(options = {}) {
-    const position = [2, 2, 2, 0];
-    this.play("Re = D", position, options);
-  }
-
-  D_Sharp_Major(options = {}){
-    const position = [0,3,3,1]
-    this.play('Sustained Re = D#', position, options)
-  }
-
-  E_Major(options = {}) {
-    const position = [4,4,4,2]
-    this.play("Mi = E", position, options);
-  }
-
-  F_Major(options = {}) {
-    const position = [2, 0, 1, 0];
-    this.play("Fa = F", position, options);
-  }
-
-  F_Sharp_Major(options = {}){
-    const position = [3, 1, 2, 1]
-    this.play("Sustained Fa = F#", position, options);
-  }
-
-  G_Major(options = {}) {
-    const position = [0, 2, 3, 2];
-    this.play("Sol = G", position, options);
-  }
-
-  G_Sharp_Major(options = {}){
-    const position = [1, 3, 3, 3]
-    this.play("Sustained Sol = G#", position, options);
-  }
-
-  A_Major(options = {}) {
-    const position = [2, 1, 0, 0];
-    this.play("Lá = A", position, options);
-  }
-
-  A_Sharp_Major(options = {}){
-    const position = [3,0,1,3]
-    this.play("Sustained La = A#", position, options)
-  }
-
-  B_Major(options = {}) {
-    const position = [4, 3, 2, 2];
-    this.play("Si = B", position, options);
-  }
-
-  //MINOR CHORDS
-  C_Minor(options = {}){
-    const position = [0, 3, 3, 3]
-    this.play('Minor Do = Cm', position, options)
-  }
-
-  C_Sharp_Minor(options = {}){
-    const position = [1, 1, 0, 4]
-    this.play('Minor Sustained Do = C#m', position, options)
-  }
-
-  D_Minor(options = {}){
-    const position = [2, 2, 1, 0]
-    this.play('Minor Re = Dm', position, options)
-  }
-
-  D_Sharp_Minor(options = {}){
-    const position = [3, 3, 2, 1]
-    this.play('Minor Sustained Re = D#m', position, options)
-  }
-
-  E_Minor(options = {}){
-    const position = [0, 4, 0, 3]
-    this.play('Minor Mi = Em', position, options)
-  }
-
-  F_Minor(options = {}){
-    const position = [1, 0, 1, 3]
-    this.play('Minor Fa = Fm', position, options)
-  }
-
-  F_Sharp_Minor(options = {}){
-    const position = [2, 1, 2, 0]
-    this.play('Minor Sustained Fa = F#m', position, options)
-  }
-
-  G_Minor(options = {}){
-    const position = [0, 2, 3, 1]
-    this.play('Minor Sol = Gm', position, options)
-  }
-
-  G_Sharp_Minor(options = {}){
-    const position = [1, 3, 4, 2]
-    this.play('Minor Sustained Sol = G#m', position, options)
-  }
-
-  A_Minor(options = {}){
-    const position = [2, 0, 0, 0]
-    this.play('Minor La = Am', position, options)
-  }
-
-  A_Sharp_Minor(options = {}){
-    const position = [3, 1, 1, 1]
-    //const position  = [[1, 3], [1], [1], [1]]
-    //const position = [[1, 3], 1, 1, 1]
-    this.play('Minor Sustained La = A#m', position, options)
-  }
-
-  B_Minor(options = {}){
-    const position = [4, 2, 2, 2]
-    //const position = [[2, 4], [2], [2], [2]]
-    //const position = [[2, 4], 2, 2, 2]
-    this.play('Minor Sol = Bm', position, options)
+  // Define a method to play chords using the chordPositions dictionary
+  playChord(chordName, options = {}) {
+    const position = this.chordPositions[chordName];
+    if (position) {
+      this.play(chordName, position, options);
+    } else {
+      console.error(`Chord "${chordName}" not found.`);
+    }
   }
 }

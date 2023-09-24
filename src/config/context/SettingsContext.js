@@ -8,12 +8,240 @@ export function SettingsContextProvider({children}){
     const [displayMode, setDisplayMode] = useState({"notes": true, "chords": false})
     const [notesSettings, setNotesSettings] = useState({"sharp": true, "flat":false})
     const [selectedNotes, setSelectedNotes] = useState({'C':true, 'C#':true, 'D':true, 'D#':true, 'E':true, 'F':true, 'F#':false, 'G':true, 'G#':true, 'A':true, 'A#':true, 'B':true})
-    const [selectedMajorChords, setSelectedMajorChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
-    const [selectedMajorSeventhChords, setSelectedMajorSeventhChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
-    const [selectedAugmentedChords, setSelectedAugmentedChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedMajorChords, setSelectedMajorChords] = useState({
+        'C':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'C#':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'D':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'D#':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'E':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'F':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'F#':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'G':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'G#':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'A':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'A#':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false},
+        'B':{'selected': false, 'augmented': false, 'seventh': false, 'sixth': false, 'ninth': false}
+    })
     const [selectedMinorChords, setSelectedMinorChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
-    const [selectedMinorSeventhChords, setSelectedMinorSeventhChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
-    const [selectedDiminishedChords, setSelectedDiminishedChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+
+    const [selectedChords, setSelectedChords] = useState({
+        'C':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'C#':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'D':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'D#':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'E':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'F':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'F#':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'G':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'G#':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'A':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'A#':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+        'B':{
+            'major':{
+                'selected': false,
+                'augmented': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'minor':{
+                'selected': false,
+                'diminished': false,
+                'sixth': false,
+                'seventh': false,
+                'ninth': false
+            },
+            'sus2': false,
+            'sus4': false
+        },
+    })
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
@@ -36,11 +264,8 @@ export function SettingsContextProvider({children}){
         notesSettings: notesSettings,
         selectedNotes: selectedNotes,
         selectedMajorChords: selectedMajorChords,
-        selectedMajorSeventhChords: selectedMajorSeventhChords,
-        selectedAugmentedChords:selectedAugmentedChords,
         selectedMinorChords: selectedMinorChords,
-        selectedMinorSeventhChords: selectedMinorSeventhChords,
-        selectedDiminishedChords: selectedDiminishedChords,
+        selectedChords: selectedChords,
         whatToDisplay: whatToDisplay,
         instruments: instruments,
         instrumentName: instrumentName,
@@ -149,16 +374,15 @@ export function SettingsContextProvider({children}){
         }
       
         setSelectedNotes(updatedSelectedNotes);
-      }
+    }
       
 
     return(
-
         <SettingsContext.Provider 
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
-                displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll,
-                selectedMajorChords, setSelectedMajorChords, selectedAugmentedChords, setSelectedAugmentedChords, selectedMajorSeventhChords, setSelectedMajorSeventhChords, selectedMinorChords, setSelectedMinorChords, selectedDiminishedChords, setSelectedDiminishedChords, selectedMinorSeventhChords, setSelectedMinorSeventhChords,
+                displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll, selectedChords, setSelectedChords,
+                selectedMajorChords, setSelectedMajorChords, selectedAugmentedChords, selectedMinorChords, setSelectedMinorChords,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
                 instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,
@@ -167,5 +391,5 @@ export function SettingsContextProvider({children}){
             }}>
                 {children}
         </SettingsContext.Provider>
-        )
+    )
 }

@@ -1,11 +1,11 @@
 import StringInstrument from "./StringInstrument";
 
-class Violao extends StringInstrument{
-  tuning = ["E", "A", "D", "G", "B", "E"];
-  amntFrets = 22;
+class instrumentName extends StringInstrument{
+  tuning = [];
+  amntFrets = 0;
   chordPosition = {
     C:{
-      Major: [0, 3, 2, 0, 1, 0],
+      Major: [],
       Augmented: [],
       Major_Sixth:[],
       Major_Seventh:[],
@@ -61,7 +61,7 @@ class Violao extends StringInstrument{
       Sus4: [],
     },
     E:{
-      Major: [0, 2, 2, 1, 0, 0],
+      Major: [],
       Augmented: [],
       Major_Sixth:[],
       Major_Seventh:[],
@@ -172,15 +172,5 @@ class Violao extends StringInstrument{
       Sus2: [],
       Sus4: [],
     },
-  }
-
-  C(options = {}) {
-    const position = [0, 3, 2, 0, 1, 0];
-    this.play("Dó = C", position, options);
-  }
-
-  E(options = {}) {
-    const position = [0, 2, 2, 1, 0, 0];
-    this.play("Mi = E", position, options);
   }
 }
