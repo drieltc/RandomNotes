@@ -8,6 +8,12 @@ export function SettingsContextProvider({children}){
     const [displayMode, setDisplayMode] = useState({"notes": true, "chords": false})
     const [notesSettings, setNotesSettings] = useState({"sharp": true, "flat":false})
     const [selectedNotes, setSelectedNotes] = useState({'C':true, 'C#':true, 'D':true, 'D#':true, 'E':true, 'F':true, 'F#':false, 'G':true, 'G#':true, 'A':true, 'A#':true, 'B':true})
+    const [selectedMajorChords, setSelectedMajorChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedMajorSeventhChords, setSelectedMajorSeventhChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedAugmentedChords, setSelectedAugmentedChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedMinorChords, setSelectedMinorChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedMinorSeventhChords, setSelectedMinorSeventhChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
+    const [selectedDiminishedChords, setSelectedDiminishedChords] = useState({'C':false, 'C#':false, 'D':false, 'D#':false, 'E':false, 'F':false, 'F#':false, 'G':false, 'G#':false, 'A':false, 'A#':false, 'B':false})
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
@@ -29,6 +35,12 @@ export function SettingsContextProvider({children}){
         displayMode: displayMode,
         notesSettings: notesSettings,
         selectedNotes: selectedNotes,
+        selectedMajorChords: selectedMajorChords,
+        selectedMajorSeventhChords: selectedMajorSeventhChords,
+        selectedAugmentedChords:selectedAugmentedChords,
+        selectedMinorChords: selectedMinorChords,
+        selectedMinorSeventhChords: selectedMinorSeventhChords,
+        selectedDiminishedChords: selectedDiminishedChords,
         whatToDisplay: whatToDisplay,
         instruments: instruments,
         instrumentName: instrumentName,
@@ -146,6 +158,7 @@ export function SettingsContextProvider({children}){
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
                 displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll,
+                selectedMajorChords, setSelectedMajorChords, selectedAugmentedChords, setSelectedAugmentedChords, selectedMajorSeventhChords, setSelectedMajorSeventhChords, selectedMinorChords, setSelectedMinorChords, selectedDiminishedChords, setSelectedDiminishedChords, selectedMinorSeventhChords, setSelectedMinorSeventhChords,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
                 instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,
