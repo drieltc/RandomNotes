@@ -4,7 +4,7 @@ class Ukulele extends StringInstrument {
   tuning = ["G", "C", "E", "A"];
   amntFrets = 18;
 
-  chordPositions = {
+  chordPositionsByNote = {
     C:{
         Major: [0, 0, 0, 3],
         Augmented: [],
@@ -172,6 +172,177 @@ class Ukulele extends StringInstrument {
         Minor_Ninth: [],
         Sus2: [],
         Sus4: [],
+    },
+  };
+
+  chordPositionsByScale = {
+    Major:{
+        C: [0, 0, 0, 3],
+        C_Sharp: [1, 1, 1, 4], //[1, 1, 1, [1, 4]]
+        D:[2, 2, 2, 0],
+        D_Sharp:[0, 3, 3, 1],
+        E: [4, 4, 4, 2],
+        F:[2, 0, 1, 0],
+        F_Sharp:[3, 1, 2, 1],
+        G:[0, 2, 3, 2],
+        G_Sharp:[1, 3, 4, 3],
+        A:[2, 1, 0, 0],
+        A_Sharp:[3, 2, 1, 1],
+        B:[4, 3, 2, 2],
+    },
+    Augmented:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Major_Sixth:{
+        C:[0, 0, 0, 0],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Major_Seventh:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Major_Ninth:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Minor:{
+        C: [0, 3, 3, 3],
+        C_Sharp:[1, 1, 0, 4],
+        D:[2, 2, 1, 0],
+        D_Sharp:[3, 3, 2, 1],
+        E:[0, 4, 0, 3],
+        F:[1, 0, 1, 3],
+        F_Sharp:[2, 1, 2, 0],
+        G:[0, 2, 3, 1],
+        G_Sharp:[1, 3, 4, 2],
+        A:[2, 0, 0, 0],
+        A_Sharp:[3, 1, 1, 1], //[[1, 3], 1, 1, 1] or [[1, 3], [1], [1], [1]]
+        B:[4, 2, 2, 2] // or [[2, 4], 2, 2, 2] or [[2, 4], [2], [2], [2]]
+    },
+    Diminished:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Minor_Sixth:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Minor_Seventh:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Minor_Ninth:{
+        C:[],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Sus2:{
+        C: [0, 2, 3, 3],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
+    },
+    Sus4:{
+        C:[0, 0, 1, 3],
+        C_Sharp:[],
+        D:[],
+        D_Sharp:[],
+        E:[],
+        F:[],
+        F_Sharp:[],
+        G:[],
+        G_Sharp:[],
+        A:[],
+        A_Sharp:[],
+        B:[]
     },
   };
 

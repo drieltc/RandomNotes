@@ -5,7 +5,7 @@ export const SettingsContext = createContext()
 export function SettingsContextProvider({children}){
     const [playMode, setPlayMode] = useState({"timer": false, "zen": true})
     const [timerValue, setTimerValue] = useState(0)
-    const [displayMode, setDisplayMode] = useState({"notes": true, "chords": false})
+    const [displayMode, setDisplayMode] = useState({"notes": false, "chords": true})
     const [notesSettings, setNotesSettings] = useState({"sharp": true, "flat":false})
     const [selectedNotes, setSelectedNotes] = useState({'C':true, 'C#':true, 'D':true, 'D#':true, 'E':true, 'F':true, 'F#':false, 'G':true, 'G#':true, 'A':true, 'A#':true, 'B':true})
     const [selectedMajorChords, setSelectedMajorChords] = useState({
@@ -242,6 +242,212 @@ export function SettingsContextProvider({children}){
             'sus4': false
         },
     })
+    const[selectedChords2, setSelectedChords2] = useState({
+        major:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        augmented:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        major_sixth:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        major_seventh:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        major_ninth:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        minor:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        diminished:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        minor_sixth:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        minor_seventh:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        minor_ninth:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        sus2:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+        sus4:{
+            selected: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
+    })
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
@@ -251,26 +457,27 @@ export function SettingsContextProvider({children}){
     const [menuVisibility, setMenuVisibility] = useState({
         timer: false,
         zen: false,
-        notes: true,
-        chords: false,
+        notes: false,
+        chords: true,
         instruments: false,
         keep: false
     });
 
     const Settings = {
-        playMode: playMode,
-        timerValue: timerValue,
-        displayMode: displayMode,
+        //playMode: playMode,
+        //timerValue: timerValue,
+        //displayMode: displayMode,
         notesSettings: notesSettings,
-        selectedNotes: selectedNotes,
-        selectedMajorChords: selectedMajorChords,
-        selectedMinorChords: selectedMinorChords,
-        selectedChords: selectedChords,
+        //selectedNotes: selectedNotes,
+        //selectedMajorChords: selectedMajorChords,
+        //selectedMinorChords: selectedMinorChords,
+        //selectedChords: selectedChords,
+        selectedChords2: selectedChords2,
         whatToDisplay: whatToDisplay,
-        instruments: instruments,
-        instrumentName: instrumentName,
-        stringSettings: stringSettings,
-        bpmValue: bpmValue,
+        //instruments: instruments,
+        //instrumentName: instrumentName,
+        //stringSettings: stringSettings,
+        //bpmValue: bpmValue,
     }
    
     function handlePlayModeClick(value){
@@ -382,7 +589,8 @@ export function SettingsContextProvider({children}){
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
                 displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll, selectedChords, setSelectedChords,
-                selectedMajorChords, setSelectedMajorChords, selectedAugmentedChords, selectedMinorChords, setSelectedMinorChords,
+                selectedMajorChords, setSelectedMajorChords, selectedMinorChords, setSelectedMinorChords,
+                selectedChords2, setSelectedChords2,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
                 instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,

@@ -1,5 +1,3 @@
-const chords = {
-    scales: ['Major', 'Augmented', 'Major_Sixth', 'Major_Sseventhth','Major_Ninth', 'Minor', 'Diminished', 'Minor_Sixth', 'Minor_Seventh', 'Minor_Ninth', 'Sus2', 'Sus4'],
-}
+const typesChords = ['major', 'aug', 'M6', 'M7','M9', 'minor', 'dim', 'm6', 'm7', 'm9', 'sus2', 'sus4']
 
-export default chords
+export default typesChords

@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
+
+#chords{
+    background-color: #2c2e31;
+    border-radius: 10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    color: #646669;
+    flex-wrap: wrap;
+    margin: 0;
+    gap: 5px;
+}
+
+#selectTypesChord {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 items in the first row */
+    gap: 10px; /* Adjust the gap between items as needed */
+    justify-items: start; /* Align items to the start by default */
+}
+
+@media (max-width: 768px) {
+    #selectTypesChord {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row for smaller screens */
+    }
+}

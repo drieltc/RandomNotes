@@ -20,14 +20,14 @@ const instruments = {
         name: 'Bass',
         strings: 4,
         frets: 999,
-        tunning: ['E', 'A', 'D', 'G'],
+        tunning: ['G', 'D', 'A', 'E'],
     },
 
     Contrabass:{
         name: 'Contrabass',
         strings: 4,
         frets: 999,
-        tunning: ['G', 'C', 'E', 'A'],
+        tunning: ['G', 'D', 'A', 'E'],
     },
     Piano_Keyboard:{
         name: 'Keyboard',
