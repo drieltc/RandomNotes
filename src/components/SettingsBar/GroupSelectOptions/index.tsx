@@ -9,6 +9,8 @@ export default function GroupSelectOptions({
     handleFunction,
     states,
     updateMenus,
+    handleFunctionVar,
+    twoInputs=false
   }:{
     id: string;
     separator?:boolean;
@@ -16,6 +18,8 @@ export default function GroupSelectOptions({
     handleFunction?: Function;
     states?: any;
     updateMenus?:boolean;
+    handleFunctionVar?:any
+    twoInputs?:boolean
   }) {
 
     const handleChildClick = (content:string) => {
@@ -34,7 +38,9 @@ export default function GroupSelectOptions({
               content={state? state : null}
               isSelected = {Object.values(states)[index]}
               handleFunction={handleChildClick}
+              handleFunctionVar={handleFunctionVar}
               updateMenus = {updateMenus}
+              twoInputs = {twoInputs}
             />
           ))}
         </div>

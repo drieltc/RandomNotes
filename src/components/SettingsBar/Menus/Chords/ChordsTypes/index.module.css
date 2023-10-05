@@ -1,0 +1,12 @@
+#selectTypesChord {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 items in the first row */
+    gap: 10px; /* Adjust the gap between items as needed */
+    justify-items: start; /* Align items to the start by default */
+}
+
+@media (max-width: 768px) {
+    #selectTypesChord {
+        grid-template-columns: repeat(3, 1fr); /* 3 items per row for smaller screens */
+    }
+}

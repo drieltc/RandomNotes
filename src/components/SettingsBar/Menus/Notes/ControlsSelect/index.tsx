@@ -1,13 +1,18 @@
 import GroupSelectOptions from '../../../../SettingsBar/GroupSelectOptions';
-import { useContext } from 'react';
-import { SettingsContext } from '../../../../../config/context/SettingsContext';
 
 import styles from './index.module.css'
 import CheckIcon from '../../../../../assets/svg/checkCircleIcon.svg'
 import UncheckIcon from '../../../../../assets/svg/xCircleIcon.svg'
 
-export default function ControlsSelect(){
-    const {handleNoteSelectAll} = useContext(SettingsContext)
+export default function ControlsSelect({
+    handleFunction,
+    handleFunctionVar,
+    twoInputs
+}:{
+    handleFunction?: (content: string) => any;
+    handleFunctionVar?: any;
+    twoInputs?:boolean
+}){
     const options = {
         'check all': false,
         'uncheck all': false,
@@ -23,8 +28,10 @@ export default function ControlsSelect(){
                     <CheckIcon className={styles.icons} />,
                     <UncheckIcon className={styles.icons}/>
                 ]}
-                handleFunction={handleNoteSelectAll}
+                handleFunction={handleFunction}
+                handleFunctionVar={handleFunctionVar}
                 updateMenus = {false}
+                twoInputs={twoInputs}
             />
         </div>
     )

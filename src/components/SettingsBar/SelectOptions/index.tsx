@@ -9,20 +9,26 @@ export default function SelectOption({
     handleFunction,
     updateMenus=true,
     handleFunctionVar,
+    twoInputs=false,
 }:{
     icon?: React.ReactNode;
     content?: string;
     isSelected?: any;
-    handleFunction?: (content: string) => any;
+    handleFunction?: (content: any) => any;
     updateMenus?:boolean;
     handleFunctionVar?: any;
+    twoInputs?: boolean
 }){
 
     const {changeMenuVisualization} = useContext(SettingsContext)
 
     const handleClick = () => {
         if (handleFunction) {
-            if (handleFunctionVar){
+            if (twoInputs){
+                const values = [handleFunctionVar, content]
+                handleFunction(values)
+            }
+            else if (handleFunctionVar){
                 handleFunction(handleFunctionVar)
             }
             else{
