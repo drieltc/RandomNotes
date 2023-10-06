@@ -5,14 +5,19 @@ import styles from './index.module.css';
 import chords from '../../../../../config/music/chords';
 
 export default function ChordsTypes(){
-    const {selectedChords2} = useContext(SettingsContext)
+    const {selectedChords2, handleActiveTypeChord} = useContext(SettingsContext)
     return(
         <div id={styles.selectTypesChord}>
         {chords.map((chord, index) => (
-          <SelectOption 
+          <SelectOption
+            key={chord}
             content={chord}
             updateMenus={false}
             isSelected={Object.values(selectedChords2)[index]['selected']}
+            isActive={Object.values(selectedChords2)[index]['active']}
+            handleFunction={handleActiveTypeChord}
+            handleFunctionVar={chord}
+            under={true}
           />
         ))}
       </div>

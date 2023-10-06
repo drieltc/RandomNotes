@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto&family=Roboto+Flex:opsz@8..144&display=swap');
 
+.selectOption{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .select {
   all: unset;
   transition: all 0.3s ease;
@@ -41,9 +47,15 @@
   padding: 1px;
 }
 
-.separatorIcon{
-  width: 15px;
-  height: 35px;
-  margin: auto 5px;
-  fill: rgb(60, 60, 60);
+.active{
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 50%;
+  height: 6px;
+  width: 6px;
+  margin-top: 2px;
+  transition: 0.1s ease-in-out;
+}
+
+.activated{
+  background-color: white;
 }

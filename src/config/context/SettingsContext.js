@@ -230,7 +230,7 @@ export function SettingsContextProvider({children}){
     const[selectedChords2, setSelectedChords2] = useState({
         'major':{
             selected: false,
-            active: false,
+            active: true,
             chords:{
                 'C': false,
                 'C#': false,
@@ -444,7 +444,26 @@ export function SettingsContextProvider({children}){
                 'B': false
             }
         },
+        'dom':{
+            selected: false,
+            active: false,
+            chords:{
+                'C': false,
+                'C#': false,
+                'D': false,
+                'D#': false,
+                'E': false,
+                'F': false,
+                'F#': false,
+                'G': false,
+                'G#': false,
+                'A': false,
+                'A#': false,
+                'B': false
+            }
+        },
     })
+    const [activeScale, setActiveScale] = useState('major')
     const [whatToDisplay, setWhatToDisplay] = useState({"partiture": false,"name": false, "symbol": true,})
     const [instruments, setInstruments] = useState({"instruments": false})
     const [instrumentName, setInstrumentName] = useState('')
@@ -467,6 +486,7 @@ export function SettingsContextProvider({children}){
         notesSettings: notesSettings,
         //selectedNotes: selectedNotes,
         selectedChords2: selectedChords2,
+        activeScale: activeScale,
         whatToDisplay: whatToDisplay,
         //instruments: instruments,
         //instrumentName: instrumentName,
@@ -615,12 +635,23 @@ export function SettingsContextProvider({children}){
         }))
     }
 
+    function handleActiveTypeChord(value){
+        let newSelectedChords2 = {...selectedChords2}
+        
+        for (const scale in newSelectedChords2) {
+            newSelectedChords2[scale].active = scale === value;
+          }
+
+        setSelectedChords2(newSelectedChords2)
+        setActiveScale(value)
+    }
+
     return(
         <SettingsContext.Provider 
             value = {{
                 playMode, setPlayMode, handlePlayModeClick, timerValue, setTimerValue,
                 displayMode, setDisplayMode, handleDisplayModeClick, notesSettings, setNotesSettings, handleNotesSettingsClick, selectedNotes, setSelectedNotes, handleNoteSelectItem, handleNoteSelectAll, selectedChords, setSelectedChords,
-                selectedChords2, setSelectedChords2, handleChordSelectItem, handleChordSelectAll,
+                selectedChords2, setSelectedChords2, handleChordSelectItem, handleChordSelectAll, handleActiveTypeChord, activeScale, setActiveScale,
                 whatToDisplay, setWhatToDisplay, handleWhatToDisplayClick,
                 instruments, setInstruments, handleInstrumentClick, instrumentName, setInstrumentName, stringSettings, setStringSettings, handleStringSettingsClick,
                 bpmValue, setBPMValue,

@@ -12,15 +12,20 @@ export default function ChordsMenu({
 }: {
   visibility?: boolean;
 }) {
-  const {handleChordSelectAll} = useContext(SettingsContext)
-  const scale = 'aug'
+  const {handleChordSelectAll, activeScale} = useContext(SettingsContext)
+  const scale = activeScale
 
   return visibility ? (
     <menu id={styles.chords}>
-      Chords
-      <div id={styles.selections}>
-        <ChordsTypes />
 
+      <div id={styles.selections}>
+
+        <div id={styles.chordTypes}>
+          <ChordsTypes />
+        </div>
+
+        <div id={styles.separator}></div>
+        
         <div id={styles.items}>
           <ControlsSelect 
             handleFunction={handleChordSelectAll}

@@ -35,7 +35,8 @@ export default function ChordsSelectGrid({scale}:{scale?:string}){
     return(
         <div id={styles.selectChords}>
             {notes[option].map((note, index) =>(
-                <SelectOption 
+                <SelectOption
+                    key={note}
                     content={note}
                     updateMenus={false}
                     handleFunction={handleChordSelectItem}

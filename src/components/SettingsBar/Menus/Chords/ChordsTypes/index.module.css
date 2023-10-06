@@ -2,7 +2,9 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 items in the first row */
     gap: 10px; /* Adjust the gap between items as needed */
-    justify-items: start; /* Align items to the start by default */
+    justify-items: center; /* Align items to the start by default */
+    row-gap: 25px;
+    font-size: 18px;
 }
 
 @media (max-width: 768px) {

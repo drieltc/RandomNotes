@@ -10,6 +10,8 @@ export default function SelectOption({
     updateMenus=true,
     handleFunctionVar,
     twoInputs=false,
+    isActive=false,
+    under=false
 }:{
     icon?: React.ReactNode;
     content?: string;
@@ -17,7 +19,9 @@ export default function SelectOption({
     handleFunction?: (content: any) => any;
     updateMenus?:boolean;
     handleFunctionVar?: any;
-    twoInputs?: boolean
+    twoInputs?: boolean;
+    isActive?: boolean;
+    under?: boolean
 }){
 
     const {changeMenuVisualization} = useContext(SettingsContext)
@@ -41,7 +45,7 @@ export default function SelectOption({
     }
 
     return (
-        <>
+        <div className={`${styles.selectOption} ${under? styles.under : ''}`}>
             <button
                 className={`${styles.select} ${isSelected ? styles.selected : ''}`}
                 onClick={handleClick}
@@ -49,6 +53,9 @@ export default function SelectOption({
             >
             {icon} {content}
             </button>
-        </>
+
+            {under? <div className = {`${styles.active} ${isActive ? styles.activated : ''}`}
+            ></div> : null}
+        </div>
     );
 }
